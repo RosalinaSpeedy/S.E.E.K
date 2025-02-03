@@ -9,6 +9,13 @@ import location from "../assets/icons/location.png";
 import chevronLeft from '../assets/icons/chevron-left.png'
 import chevronRight from '../assets/icons/chevron-right.png'
 import logo from '../assets/icons/seek_logo.png'
+import cloud from '../assets/icons/cloud.png'
+import clock from '../assets/icons/clock.png'
+import book from '../assets/icons/book.png'
+import exclamation from '../assets/icons/exclamation.png'
+import ribbon from '../assets/icons/ribbon.png'
+import speechbubble from '../assets/icons/speechbubble.png'
+import home from '../assets/icons/home.png'
 
 export default {
   heart,
@@ -21,5 +28,12 @@ export default {
   location,
   chevronLeft,
   chevronRight,
-  logo
+  logo,
+  cloud,
+  clock,
+  book,
+  exclamation,
+  ribbon,
+  speechbubble,
+  home
 };

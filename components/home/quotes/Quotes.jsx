@@ -3,10 +3,11 @@ import { View, Text } from 'react-native'
 
 import styles from './quotes.style'
 
-const Quotes = () => {
+const Quotes = ({quote}) => {
   return (
-    <View>
-      <Text>Quotes</Text>
+    <View style={styles.quoteContainer}>
+      <Text style={styles.dailyQuoteTitle}>Daily Quote:</Text>
+      <Text style={styles.quoteBody}>{quote}</Text>
     </View>
   )
 }

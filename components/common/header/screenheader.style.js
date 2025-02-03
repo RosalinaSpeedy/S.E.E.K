@@ -16,6 +16,15 @@ const styles = StyleSheet.create({
     height: dimension,
     borderRadius: SIZES.small / 1.25,
   }),
+  iconImage: {
+    width: 60,
+    height: 60,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  logoutButton: {
+    color: COLORS.lightWhite
+  }
 });
 
 export default styles;

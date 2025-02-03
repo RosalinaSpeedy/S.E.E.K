@@ -16,6 +16,29 @@ const styles = StyleSheet.create({
     height: dimension,
     borderRadius: SIZES.small / 1.25,
   }),
+  footerMain: {
+    width: "100%",
+    alignItems: 'center',
+    backgroundColor: "#000000",
+    height: "5%",
+  },
+  homeButton: {
+    borderRadius: 35,
+    top: -30,
+    backgroundColor: COLORS.lightWhite,
+    borderBlockColor: '#000000',
+    borderWidth: 3,
+    width: 60,
+    height: 60,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  homeIcon: {
+    width: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+  }
 });
 
 export default styles;

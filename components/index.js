@@ -1,12 +1,15 @@
 import ScreenHeaderBtn from "./common/header/ScreenHeaderBtn";
-import TextButton from "./common/header/TextButton";
+import LogoutButton from "./common/header/LogoutButton";
+import SeekIcon from "./common/header/SeekIcon";
 import HomeButton from "./common/footer/HomeButton";
+import MainFooter from "./common/footer/MainFooter";
 
 // home screen
 import Welcome from "./home/welcome/Welcome";
 import Nearbyjobs from "./home/nearby/Nearbyjobs";
 import Popularjobs from "./home/popular/Popularjobs";
 import RoundedSquareButton from "./home/navigation/RoundedSquareButton";
+import MainMenu from "./home/navigation/MainMenu";
 import Quotes from "./home/quotes/Quotes"
 
 // job details screen
@@ -30,8 +33,11 @@ export {
   JobFooter,
   Specifics,
   NearbyJobCard,
-  TextButton,
+  LogoutButton,
   RoundedSquareButton,
+  MainMenu,
   Quotes,
-  HomeButton
+  HomeButton,
+  SeekIcon,
+  MainFooter
 };
