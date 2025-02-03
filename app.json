@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "scheme": "acme",
+    "plugins": [
+      "expo-router"
+    ],
+    "name": "S.E.E.K",
+    "slug": "S.E.E.K"
+  }
+}
