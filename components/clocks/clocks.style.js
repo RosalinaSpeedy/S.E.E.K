@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   },
   clockChangeButton: {
     position: 'absolute',
-    right: 0,
+    right: 40,
     width: 60,
     height: 60,
   },

@@ -2,14 +2,14 @@ import {Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl,
 import {Stack, useRouter, useLocalSearchParams} from 'expo-router';
 import { useCallback, useState } from "react";
 
-import {MainFooter, MainHeader, AddictionTitle, Tracker, ProgressLegend, RelapseButton} from '../../components';
+import {MainFooter, MainHeader, AddictionTitle, Tracker, ProgressLegend, RelapseButton, ClockChangeButtons, TrackerCalendar} from '../../components';
 import {COLORS, icons, SIZES} from '../../constants';
-
-const tabs = ["About", "Qualifications", "Responsibilities"];
 
 const Clock = () => {
     const params = useLocalSearchParams();
     const router = useRouter();
+    const [clockState, setClockState] = useState(true);
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
             <MainHeader/>
@@ -18,7 +18,10 @@ const Clock = () => {
                     title={params.name}
                 />
                 <View>
-                    <Tracker/>
+                    {clockState ? <Tracker/> : <TrackerCalendar/>}
+                </View>
+                <View>
+                    <ClockChangeButtons setClockState={setClockState}/>
                 </View>
                 <View>
                     <ProgressLegend/>

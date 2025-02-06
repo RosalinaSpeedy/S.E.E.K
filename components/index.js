@@ -18,6 +18,8 @@ import Tracker from "./clocks/Tracker";
 import AddictionTitle from "./clocks/AddictionTitle";
 import ProgressLegend from "./clocks/ProgressLegend";
 import RelapseButton from "./clocks/RelapseButton";
+import ClockChangeButtons from "./clocks/ClockChangeButtons";
+import TrackerCalendar from "./clocks/TrackerCalendar";
 
 // job details screen
 import Company from "./jobdetails/company/Company";
@@ -51,5 +53,7 @@ export {
   Tracker,
   ProgressLegend,
   AddictionTitle,
-  RelapseButton
+  RelapseButton,
+  ClockChangeButtons,
+  TrackerCalendar
 };
