@@ -16,6 +16,8 @@ import exclamation from '../assets/icons/exclamation.png'
 import ribbon from '../assets/icons/ribbon.png'
 import speechbubble from '../assets/icons/speechbubble.png'
 import home from '../assets/icons/home.png'
+import blackclock from '../assets/icons/blackclock.png'
+import calendar from '../assets/icons/calendar.png'
 
 export default {
   heart,
@@ -35,5 +37,7 @@ export default {
   exclamation,
   ribbon,
   speechbubble,
-  home
+  home,
+  blackclock,
+  calendar
 };

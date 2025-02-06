@@ -1,6 +1,7 @@
 import ScreenHeaderBtn from "./common/header/ScreenHeaderBtn";
 import LogoutButton from "./common/header/LogoutButton";
 import SeekIcon from "./common/header/SeekIcon";
+import MainHeader from "./common/header/MainHeader";
 import HomeButton from "./common/footer/HomeButton";
 import MainFooter from "./common/footer/MainFooter";
 
@@ -11,6 +12,12 @@ import Popularjobs from "./home/popular/Popularjobs";
 import RoundedSquareButton from "./home/navigation/RoundedSquareButton";
 import MainMenu from "./home/navigation/MainMenu";
 import Quotes from "./home/quotes/Quotes"
+
+// clocks
+import Tracker from "./clocks/Tracker";
+import AddictionTitle from "./clocks/AddictionTitle";
+import ProgressLegend from "./clocks/ProgressLegend";
+import RelapseButton from "./clocks/RelapseButton";
 
 // job details screen
 import Company from "./jobdetails/company/Company";
@@ -39,5 +46,10 @@ export {
   Quotes,
   HomeButton,
   SeekIcon,
-  MainFooter
+  MainFooter,
+  MainHeader,
+  Tracker,
+  ProgressLegend,
+  AddictionTitle,
+  RelapseButton
 };

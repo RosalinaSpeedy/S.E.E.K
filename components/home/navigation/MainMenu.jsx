@@ -7,7 +7,7 @@ import styles from './mainnav.style'
 import { icons } from '../../../constants'
 
 import Quotes from '../quotes/Quotes'
-import { MainFooter, HomeButton } from '../../../components'
+import { router } from 'expo-router'
 
 const MainMenu = () => {
     return (
@@ -17,6 +17,7 @@ const MainMenu = () => {
                     <RoundedSquareButton
                         iconUrl={icons.clock}
                         title={"clocks"}
+                        handlePress={() => router.push('/clocks/AddictionName')}
                     />
                     <RoundedSquareButton
                         iconUrl={icons.ribbon}
@@ -43,7 +44,6 @@ const MainMenu = () => {
                     quote={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet sagittis."}
                 />
             </ScrollView>
-            <MainFooter/>
         </View>
     )
 }
