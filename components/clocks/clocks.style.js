@@ -138,6 +138,10 @@ const styles = StyleSheet.create({
   clockChangeImage: {
     width: 60,
     height: 60,
+  },
+  calendarContainer: {
+    height: clockSize,
+    paddingTop: clockSize / 20
   }
 });
 

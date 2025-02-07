@@ -18,6 +18,10 @@ import speechbubble from '../assets/icons/speechbubble.png'
 import home from '../assets/icons/home.png'
 import blackclock from '../assets/icons/blackclock.png'
 import calendar from '../assets/icons/calendar.png'
+import smiley from '../assets/icons/smiley.png'
+import neutral from '../assets/icons/neutral.png'
+import sad from '../assets/icons/sad.png'
+
 
 export default {
   heart,
@@ -39,5 +43,8 @@ export default {
   speechbubble,
   home,
   blackclock,
-  calendar
+  calendar,
+  smiley,
+  neutral,
+  sad
 };
