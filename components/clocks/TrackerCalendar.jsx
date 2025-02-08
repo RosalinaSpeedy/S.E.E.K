@@ -9,6 +9,8 @@ import { useState, useCallback } from 'react';
 
 import styles from './clocks.style'
 
+const emotionExists = false;
+
 const TrackerCalendar = () => {
   const [selected, setSelected] = useState('');
   return (
@@ -19,16 +21,17 @@ const TrackerCalendar = () => {
           setSelected(day.dateString);
         }}
         dayComponent={({ date, state }) => {
+          console.log(date)
+          console.log(state)
           return (
-            <View>
+            <View style={styles.dateRing}>
+              {emotionExists ? console.log("Found face") :
               <Text style={{ textAlign: 'center', color: state === 'disabled' ? 'gray' : 'black' }}>
                 {date.day}
-              </Text>
+              </Text>}
+              
             </View>
           );
-        }}
-        markedDates={{
-          [selected]: { selected: true, disableTouchEvent: true, selectedDotColor: 'orange' }
         }}
       />
     </View>

@@ -18,7 +18,11 @@ const Clock = () => {
                     title={params.name}
                 />
                 <View>
-                    {clockState ? <Tracker/> : <TrackerCalendar/>}
+                    {clockState ? <Tracker 
+                        personalBestPercentage={40}
+                        goalProgressPercentage={68}
+                        currentStreakPercentage={100}
+                    /> : <TrackerCalendar/>}
                 </View>
                 <View>
                     <ClockChangeButtons setClockState={setClockState}/>

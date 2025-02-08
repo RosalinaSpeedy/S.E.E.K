@@ -74,8 +74,11 @@ const styles = StyleSheet.create({
     width: clockSize,
     height: clockSize,
     borderRadius: clockSize / 2,
-    borderColor: '#BF5031',
-    borderWidth: clockSize / 18
+    //borderColor: '#BF5031',
+    borderColor: '#808080',
+    borderWidth: clockSize / 18,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   goalProgressClock: {
     alignSelf: 'center',
@@ -85,8 +88,11 @@ const styles = StyleSheet.create({
     width: clockSize * 0.85, // 80% of the base size
     height: clockSize * 0.85,
     borderRadius: clockSize / 2,
-    borderColor: '#F0A202',
-    borderWidth: clockSize / 18
+    //borderColor: '#F0A202',
+    borderColor: '#808080',
+    borderWidth: clockSize / 18,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   currentStreakClock: {
     top: clockSize * 0.15,
@@ -95,7 +101,8 @@ const styles = StyleSheet.create({
     width: clockSize * 0.7,
     height: clockSize * 0.7, // 60% of the base size
     borderRadius: clockSize * 0.8 / 2,
-    borderColor: '#06D6A0',
+    //borderColor: '#06D6A0',
+    borderColor: '#808080',
     borderWidth: clockSize / 18,
     alignItems: 'center',
     justifyContent: 'center'
@@ -142,6 +149,114 @@ const styles = StyleSheet.create({
   calendarContainer: {
     height: clockSize,
     paddingTop: clockSize / 20
+  },
+  personalBestProgressBar: {
+    position: 'absolute',
+    width: clockSize,
+    height: clockSize,
+    borderRadius: clockSize / 2,
+    borderTopColor: '#BF5031',
+    borderRightColor: '#BF5031',
+    borderLeftColor: '#00000001', //https://github.com/facebook/react-native/issues/34722
+    borderBottomColor: '#00000001',
+    borderWidth: clockSize / 18,
+    transform: [{rotateZ: '-135deg'}]
+  },
+  personalBestOffset: {
+    position: 'absolute',
+    width: clockSize,
+    height: clockSize,
+    borderWidth: clockSize / 18,
+    borderRadius: clockSize / 2,
+    borderLeftColor: '#00000001',
+    borderBottomColor: '#00000001',
+    borderRightColor: '#808080',
+    borderTopColor: '#808080',
+    transform:[{rotateZ: '-135deg'}]
+  },
+  secondPersonalBestProgressBar: {
+    position: 'absolute',
+    width: clockSize,
+    height: clockSize,
+    borderRadius: clockSize / 2,
+    borderLeftColor: '#00000001',
+    borderBottomColor: '#00000001', //https://github.com/facebook/react-native/issues/34722
+    borderTopColor: '#BF5031', 
+    borderRightColor: '#BF5031',
+    borderWidth: clockSize / 18,
+    transform: [{rotateZ: '45deg'}]
+  },
+  goalProgressProgressBar: {
+    position: 'absolute',
+    width: clockSize * 0.85,
+    height: clockSize * 0.85,
+    borderRadius: (clockSize * 0.85) / 2,
+    borderTopColor: '#F0A202',
+    borderRightColor: '#F0A202',
+    borderLeftColor: '#00000001', //https://github.com/facebook/react-native/issues/34722
+    borderBottomColor: '#00000001',
+    borderWidth: clockSize / 18,
+    transform: [{rotateZ: '-135deg'}]
+  },
+  goalProgressOffset: {
+    position: 'absolute',
+    width: clockSize * 0.85,
+    height: clockSize * 0.85,
+    borderWidth: clockSize / 18,
+    borderRadius: (clockSize * 0.85) / 2,
+    borderLeftColor: '#00000001',
+    borderBottomColor: '#00000001',
+    borderRightColor: '#808080',
+    borderTopColor: '#808080',
+    transform:[{rotateZ: '-135deg'}]
+  },
+  secondGoalProgressProgressBar: {
+    position: 'absolute',
+    width: clockSize * 0.85,
+    height: clockSize * 0.85,
+    borderRadius: (clockSize * 0.85) / 2,
+    borderLeftColor: '#00000001',
+    borderBottomColor: '#00000001', //https://github.com/facebook/react-native/issues/34722
+    borderTopColor: '#F0A202', 
+    borderRightColor: '#F0A202',
+    borderWidth: clockSize / 18,
+    transform: [{rotateZ: '45deg'}]
+  },
+  currentStreakProgressBar: {
+    position: 'absolute',
+    width: clockSize * 0.7,
+    height: clockSize * 0.7,
+    borderRadius: (clockSize * 0.7) / 2,
+    borderTopColor: '#06D6A0',
+    borderRightColor: '#06D6A0',
+    borderLeftColor: '#00000001', //https://github.com/facebook/react-native/issues/34722
+    borderBottomColor: '#00000001',
+    borderWidth: clockSize / 18,
+    transform: [{rotateZ: '-135deg'}]
+  },
+  currentStreakOffset: {
+    position: 'absolute',
+    width: clockSize * 0.7,
+    height: clockSize * 0.7,
+    borderWidth: clockSize / 18,
+    borderRadius: (clockSize * 0.7) / 2,
+    borderLeftColor: '#00000001',
+    borderBottomColor: '#00000001',
+    borderRightColor: '#808080',
+    borderTopColor: '#808080',
+    transform:[{rotateZ: '-135deg'}]
+  },
+  secondCurrentStreakProgressBar: {
+    position: 'absolute',
+    width: clockSize * 0.7,
+    height: clockSize * 0.7,
+    borderRadius: (clockSize * 0.7) / 2,
+    borderLeftColor: '#00000001',
+    borderBottomColor: '#00000001', //https://github.com/facebook/react-native/issues/34722
+    borderTopColor: '#06D6A0', 
+    borderRightColor: '#06D6A0',
+    borderWidth: clockSize / 18,
+    transform: [{rotateZ: '45deg'}]
   }
 });
 
