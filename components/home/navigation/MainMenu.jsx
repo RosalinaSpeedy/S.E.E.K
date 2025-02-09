@@ -30,6 +30,7 @@ const MainMenu = () => {
                     <RoundedSquareButton
                         iconUrl={icons.book}
                         title={"journal"}
+                        handlePress={() => router.push('/journal/journal')}
                     />
                     <RoundedSquareButton
                         iconUrl={icons.cloud}

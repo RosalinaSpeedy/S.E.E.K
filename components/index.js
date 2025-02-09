@@ -21,6 +21,11 @@ import RelapseButton from "./clocks/RelapseButton";
 import ClockChangeButtons from "./clocks/ClockChangeButtons";
 import TrackerCalendar from "./clocks/TrackerCalendar";
 
+// journal
+import AddButton from "./journal/AddButton";
+import JournalEntries from "./journal/JournalEntries";
+import JournalTitle from "./journal/JournalTItle";
+
 // job details screen
 import Company from "./jobdetails/company/Company";
 import { default as JobTabs } from "./jobdetails/tabs/Tabs";
@@ -55,5 +60,8 @@ export {
   AddictionTitle,
   RelapseButton,
   ClockChangeButtons,
-  TrackerCalendar
+  TrackerCalendar,
+  AddButton,
+  JournalEntries,
+  JournalTitle
 };
