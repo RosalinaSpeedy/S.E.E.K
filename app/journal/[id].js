@@ -6,26 +6,22 @@ import {MainFooter, MainHeader, JournalTitle, JournalEntries, AddButton} from '.
 import {COLORS, icons, SIZES} from '../../constants';
 import styles from "../../styles/search";
 
-const Journal = () => {
+const JournalEntry = ({entryData}) => {
     const params = useLocalSearchParams();
+    console.log(params)
     const router = useRouter();
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
             <MainHeader/>
             <ScrollView>
-                <JournalTitle/>
-                <JournalEntries/>
+                <Text>date</Text>
+                <Text>body</Text>
             </ScrollView>
-            <AddButton
-                handlePress={() => {
-                    router.push(`/journal/addentry`);
-                }}
-            />
-            
+            <TouchableOpacity><Text>Edit</Text></TouchableOpacity>
             <MainFooter/>
         </SafeAreaView>
     )
 }
 
-export default Journal;
+export default JournalEntry;

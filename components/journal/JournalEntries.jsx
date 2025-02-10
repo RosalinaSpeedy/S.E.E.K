@@ -3,10 +3,12 @@ import { Text, View, Image, TouchableOpacity } from 'react-native'
 
 import styles from './journal.style'
 import { icons } from '../../constants';
+import { useRouter } from 'expo-router';
 
 const placeHolderBody = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet sagittis lacus. Suspendisse justo dui, tempor ut neque mattis, vulputate faucibus ligula. Phasellus vestibulum posuere varius. Maecenas pos...';
 
 const Entry = ({entryData}) => {
+    const router = useRouter();
     let emotionIcon;
     switch (entryData.emotion) {
         case "smiley":
@@ -20,7 +22,7 @@ const Entry = ({entryData}) => {
             break;
     }
     return (
-        <TouchableOpacity style={styles.entryCard}>
+        <TouchableOpacity style={styles.entryCard} onPress={() => router.push(`/journal/${entryData.id}`)}>
             <View style={styles.entryEmotionContainer}>
                 <Image
                     style={styles.entryEmotion}
@@ -39,6 +41,7 @@ const JournalEntries = () => {
     <View>
         <Entry
             entryData={{
+                id: 1,
                 emotion: "smiley",
                 date: "XX/XX/XX",
                 body: placeHolderBody

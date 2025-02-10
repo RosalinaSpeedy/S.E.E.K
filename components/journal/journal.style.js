@@ -56,6 +56,45 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         height: '110%',
         width: '110%'
+    },
+    addEntryBox: {
+        borderWidth: 2,
+        width: '96%',
+        height: 460,
+        borderRadius: 5,
+        alignSelf: 'center',
+        textAlign: 'justify',
+        alignContent: 'flex-start',
+        textAlignVertical: 'top',
+        marginBottom: '5%'
+    },
+    saveButton: {
+        position: 'absolute',
+        right: 20,
+        bottom: -50,
+        backgroundColor: '#06D6A0',
+        width: 80,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        borderRadius: 40,
+    },
+    saveText: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20,
+        alignSelf: 'center'
+    },
+    cancelButton: {
+        position: 'absolute',
+        left: 20,
+        bottom: -50,
+        backgroundColor: '#E11313',
+        width: 100,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        borderRadius: 40,
     }
 });
 

@@ -3,9 +3,9 @@ import { Text, TouchableOpacity } from 'react-native'
 
 import styles from './journal.style'
 
-const AddButton = () => {
+const AddButton = ({handlePress}) => {
   return (
-    <TouchableOpacity style={styles.addButton}>
+    <TouchableOpacity style={styles.addButton} onPress={handlePress}>
       <Text style={styles.plus}>+</Text>
     </TouchableOpacity>
   )

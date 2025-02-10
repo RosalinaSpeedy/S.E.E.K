@@ -24,7 +24,11 @@ import TrackerCalendar from "./clocks/TrackerCalendar";
 // journal
 import AddButton from "./journal/AddButton";
 import JournalEntries from "./journal/JournalEntries";
-import JournalTitle from "./journal/JournalTItle";
+import NewEntryInput from "./journal/NewEntryInput";
+import NewEntryTitle from "./journal/NewEntryTitle";
+import JournalTitle from "./journal/JournalTitle";
+import SaveButton from "./journal/SaveButton";
+import CancelButton from "./journal/CancelButton";
 
 // job details screen
 import Company from "./jobdetails/company/Company";
@@ -63,5 +67,9 @@ export {
   TrackerCalendar,
   AddButton,
   JournalEntries,
-  JournalTitle
+  JournalTitle,
+  NewEntryTitle,
+  NewEntryInput,
+  SaveButton,
+  CancelButton
 };
