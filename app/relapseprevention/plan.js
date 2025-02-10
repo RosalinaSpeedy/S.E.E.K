@@ -41,7 +41,7 @@ const Plan = () => {
                     <PlanTitle/>
                     <PlanBody plan={tempPlan}/>
                 </View>
-                <RegenerateButton/>
+                <RegenerateButton handlePress={() => router.push('/relapseprevention/quiz')}/>
             </ScrollView>
             <MainFooter/>
         </SafeAreaView>

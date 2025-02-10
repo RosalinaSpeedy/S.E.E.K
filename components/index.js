@@ -38,6 +38,13 @@ import PledgeContent from "./relapseprevention/PledgeContent";
 import PledgeTitle from "./relapseprevention/PledgeTitle";
 import RegenerateButton from "./relapseprevention/RegenerateButton";
 
+// quiz
+import AddictionTypeSelect from "./quiz/AddictionTypeSelect";
+import QuizHeading from "./quiz/QuizHeading";
+import SeveritySelect from "./quiz/SeveritySelect";
+import TriggerInputs from "./quiz/TriggerInputs";
+import GenerateButton from "./quiz/GenerateButton";
+
 // job details screen
 import Company from "./jobdetails/company/Company";
 import { default as JobTabs } from "./jobdetails/tabs/Tabs";
@@ -85,5 +92,10 @@ export {
   PlanTitle,
   PledgeContent,
   PledgeTitle,
-  RegenerateButton
+  RegenerateButton,
+  AddictionTypeSelect,
+  QuizHeading,
+  SeveritySelect,
+  TriggerInputs,
+  GenerateButton
 };
