@@ -30,6 +30,14 @@ import JournalTitle from "./journal/JournalTitle";
 import SaveButton from "./journal/SaveButton";
 import CancelButton from "./journal/CancelButton";
 
+// relapse prevention
+import ConfirmButton from "./relapseprevention/ConfirmButton";
+import PlanBody from "./relapseprevention/PlanBody";
+import PlanTitle from "./relapseprevention/PlanTitle";
+import PledgeContent from "./relapseprevention/PledgeContent";
+import PledgeTitle from "./relapseprevention/PledgeTitle";
+import RegenerateButton from "./relapseprevention/RegenerateButton";
+
 // job details screen
 import Company from "./jobdetails/company/Company";
 import { default as JobTabs } from "./jobdetails/tabs/Tabs";
@@ -71,5 +79,11 @@ export {
   NewEntryTitle,
   NewEntryInput,
   SaveButton,
-  CancelButton
+  CancelButton,
+  ConfirmButton,
+  PlanBody,
+  PlanTitle,
+  PledgeContent,
+  PledgeTitle,
+  RegenerateButton
 };

@@ -2,7 +2,7 @@ import {Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl,
 import {Stack, useRouter, useLocalSearchParams} from 'expo-router';
 import { useCallback, useState } from "react";
 
-import {MainFooter, MainHeader, JournalTitle, JournalEntries, AddButton} from '../../components';
+import {MainFooter, MainHeader, PledgeTitle, PledgeContent, ConfirmButton, PlanTitle, PlanBody, RegenerateButton} from '../../components';
 import {COLORS, icons, SIZES} from '../../constants';
 import styles from "../../styles/search";
 
@@ -39,7 +39,7 @@ const Plan = () => {
                 </View>
                 <View>
                     <PlanTitle/>
-                    <Plan plan={tempPlan}/>
+                    <PlanBody plan={tempPlan}/>
                 </View>
                 <RegenerateButton/>
             </ScrollView>

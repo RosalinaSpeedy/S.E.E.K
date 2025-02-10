@@ -22,6 +22,7 @@ const MainMenu = () => {
                     <RoundedSquareButton
                         iconUrl={icons.ribbon}
                         title={"relapse prevention"}
+                        handlePress={() => router.push('/relapseprevention/plan')}
                     />
                     <RoundedSquareButton
                         iconUrl={icons.speechbubble}
