@@ -1,13 +1,18 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text, TextInput, View } from 'react-native'
 
 import styles from './quiz.style'
 
 const TriggerInputs = () => {
   return (
-    <Text>
-      TriggerInputs
-    </Text>
+    <View style={styles.triggerInputsContainer}>
+        <Text>
+        Triggers:
+        </Text>
+        <TextInput style={styles.triggerInput}/>
+        <TextInput style={styles.triggerInput}/>
+        <TextInput style={styles.triggerInput}/> 
+    </View>
   )
 }
 

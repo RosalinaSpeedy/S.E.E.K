@@ -44,6 +44,7 @@ import QuizHeading from "./quiz/QuizHeading";
 import SeveritySelect from "./quiz/SeveritySelect";
 import TriggerInputs from "./quiz/TriggerInputs";
 import GenerateButton from "./quiz/GenerateButton";
+import BackButton from "./quiz/BackButton";
 
 // job details screen
 import Company from "./jobdetails/company/Company";
@@ -97,5 +98,6 @@ export {
   QuizHeading,
   SeveritySelect,
   TriggerInputs,
-  GenerateButton
+  GenerateButton,
+  BackButton
 };

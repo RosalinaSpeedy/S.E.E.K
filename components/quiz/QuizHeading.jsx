@@ -5,8 +5,8 @@ import styles from './quiz.style'
 
 const QuizHeading = () => {
   return (
-    <Text>
-      QuizHeading
+    <Text style={styles.quizHeading}>
+      How are you doing?
     </Text>
   )
 }
