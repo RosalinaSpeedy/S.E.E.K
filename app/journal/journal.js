@@ -1,14 +1,21 @@
 import {Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity} from "react-native";
 import {Stack, useRouter, useLocalSearchParams} from 'expo-router';
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import {MainFooter, MainHeader, JournalTitle, JournalEntries, AddButton} from '../../components';
 import {COLORS, icons, SIZES} from '../../constants';
 import styles from "../../styles/search";
+import { getAllEntries, setEntries } from "../../services/journalService";
 
 const Journal = () => {
     const params = useLocalSearchParams();
     const router = useRouter();
+
+    const [entries, setEntries] = useState([]);
+
+    useEffect(() => {
+        getAllEntries().then(allEntries => setEntries(allEntries));
+    }, []);
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -19,7 +26,7 @@ const Journal = () => {
             </ScrollView>
             <AddButton
                 handlePress={() => {
-                    router.push(`/journal/addentry`);
+                    router.push(`/journal/add`);
                 }}
             />
             

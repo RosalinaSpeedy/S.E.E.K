@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     journalTitle: {
         fontSize: SIZES.xLarge,
         color: '#F0A202',
-        padding: '5%'
+        padding: '5%',
     },
     addButton: {
         backgroundColor: '#06D6A0',
@@ -95,6 +95,24 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 10,
         borderRadius: 40,
+    },
+    entryDeleteButton: {
+        position: 'absolute',
+        right: 5,
+        bottom: 5,
+        backgroundColor: '#E11313',
+        width: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 2,
+        borderRadius: 40,
+    },
+    entryDeleteText: {
+        color: 'white',
+        fontSize: SIZES.xSmall
+    },
+    entriesFlatList: {
+        paddingTop: 48
     }
 });
 

@@ -3,10 +3,10 @@ import { Text } from 'react-native'
 
 import styles from './journal.style'
 
-const NewEntryTitle = () => {
+const NewEntryTitle = ({id}) => {
   return (
     <Text style={styles.journalTitle}>
-      New Entry
+        {id ? "Edit Entry" : "New entry"}
     </Text>
   )
 }
