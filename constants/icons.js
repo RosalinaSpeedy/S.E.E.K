@@ -22,6 +22,7 @@ import smiley from '../assets/icons/smiley.png'
 import neutral from '../assets/icons/neutral.png'
 import sad from '../assets/icons/sad.png'
 import tickbox from '../assets/icons/tickbox.png'
+import goldTrophy from '../assets/icons/trophy.png'
 
 
 export default {
@@ -48,5 +49,6 @@ export default {
   smiley,
   neutral,
   sad,
-  tickbox
+  tickbox,
+  goldTrophy
 };

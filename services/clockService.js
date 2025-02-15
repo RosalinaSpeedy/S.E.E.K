@@ -1,0 +1,47 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+let KEY = 'CLOCK_SERVICE'
+
+export async function getAllClocks() {
+    const clocks = (await AsyncStorage.getItem(KEY)) ?? '[]';
+    return JSON.parse(clocks);
+}
+
+export async function saveClocksToStorage(clocks) {
+    AsyncStorage.setItem(KEY, JSON.stringify(clocks));
+}
+
+export async function getClockById(id) {
+    const clocks = await getAllClocks();
+    return clocks.find(clock => clock.id === id);
+}
+
+export async function saveClock(startDate, relapses, addictionName) {
+    const clocks = await getAllClocks();
+    const today = new Date();
+    clocks.push({id: today, startDate: startDate, relapses: relapses, addictionName: addictionName});
+    console.log(clocks)
+    saveClocksToStorage(clocks);
+}
+
+export async function editClock(id, startDate, addictionName) {
+    const clocks = await getAllClocks();
+    const clockIndex = clock.findIndex(clock => clock.id === id);
+    console.log(clockIndex)
+    const idDate = new Date(id);
+    clocks[clockIndex].id = idDate;
+    clocks[clockIndex].startDate = startDate;
+    clocks[clockIndex].addictionName = addictionName;
+    console.log(clocks);
+    saveClocksToStorage(clocks);
+}
+
+export async function deleteClocks(id) {
+    console.log("id is: " + id)
+    const clocks = await getAllClocks();
+    console.log(clocks);
+    const clockIndex = clocks.findIndex(clock => clock.id === id);
+    console.log(clockIndex)
+    clocks.splice(clockIndex, 1)
+    saveClocksToStorage(clocks);
+}

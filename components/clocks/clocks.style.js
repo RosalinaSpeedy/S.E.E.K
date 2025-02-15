@@ -257,7 +257,81 @@ const styles = StyleSheet.create({
     borderRightColor: '#06D6A0',
     borderWidth: clockSize / 18,
     transform: [{rotateZ: '45deg'}]
+  },
+  streakCardContainer: {
+    alignSelf: 'center',
+    width: '95%',
+    borderColor: 'black',
+    borderWidth: 2,
+    marginTop: 10,
+    marginBottom: 0,
+    borderRadius: 5,
+    padding: 3,
+  },
+  streakCardTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%'
+  },
+  cardAddictionName: {
+    color: '#F0A202',
+    fontSize: SIZES.medium,
+    fontWeight: 'bold'
+  },
+  badgeIcon: {
+    width: 80,
+    height: 80
+  },
+  streakInfoText: {
+    fontSize: SIZES.small
+  },
+  newClockButton: {
+    backgroundColor: '#06D6A0',
+    borderRadius: 20,
+    padding: 4,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    right: 10,
+    top: 5
+  },
+  newClockButtonText: {
+    fontWeight: 'bold',
+    color: 'white',
+    
+  },
+  createClockButton: {
+    backgroundColor: '#06D6A0',
+    borderRadius: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '50%',
+    padding: '2%',
+    alignSelf: 'center',
+    marginTop: '2%',
+    marginBottom: '3%'
+  },
+  clockNameInput: {
+    borderWidth: 2,
+    borderRadius: 5,
+    textAlign: 'justify',
+    alignContent: 'flex-start',
+    margin: '1%',
+    width: '80%'
+  },
+  addNewTitle: {
+    fontSize: SIZES.large,
+    color: '#F0A202',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    marginTop: SIZES.large,
+    marginBottom: '2%'
+  },
+  addNewCalendarContainer: {
+    height: clockSize,
   }
 });
 
 export default styles;
+

@@ -20,6 +20,11 @@ import ProgressLegend from "./clocks/ProgressLegend";
 import RelapseButton from "./clocks/RelapseButton";
 import ClockChangeButtons from "./clocks/ClockChangeButtons";
 import TrackerCalendar from "./clocks/TrackerCalendar";
+import StreakCard from "./clocks/StreakCard";
+import NewClockButton from "./clocks/NewClockButton";
+import AddNewTitle from "./clocks/AddNewTitle";
+import ClockInputs from "./clocks/ClockInputs";
+import CreateClockButton from "./clocks/CreateClockButton";
 
 // journal
 import AddButton from "./journal/AddButton";
@@ -99,5 +104,10 @@ export {
   SeveritySelect,
   TriggerInputs,
   GenerateButton,
-  BackButton
+  BackButton,
+  StreakCard,
+  NewClockButton,
+  AddNewTitle,
+  ClockInputs,
+  CreateClockButton
 };

@@ -17,7 +17,7 @@ const MainMenu = () => {
                     <RoundedSquareButton
                         iconUrl={icons.clock}
                         title={"clocks"}
-                        handlePress={() => router.push('/clocks/AddictionName')}
+                        handlePress={() => router.push('/clocks/list')}
                     />
                     <RoundedSquareButton
                         iconUrl={icons.ribbon}
