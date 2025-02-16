@@ -21,8 +21,6 @@ const TrackerCalendar = () => {
           setSelected(day.dateString);
         }}
         dayComponent={({ date, state }) => {
-          console.log(date)
-          console.log(state)
           return (
             <View style={styles.dateRing}>
               {emotionExists ? console.log("Found face") :

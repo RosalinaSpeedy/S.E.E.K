@@ -5,7 +5,7 @@ import { Stack, useRouter, useFocusEffect } from 'expo-router';
 import { COLORS, icons, images, SIZES } from "../../constants";
 import { MainMenu, MainFooter, MainHeader, StreakCard, NewClockButton } from "../../components";
 
-import { deleteClock, getAllClocks, setClocks } from '../../services/clockService';
+import { deleteClock, getAllClocks, setClocks, getTime } from '../../services/clockService';
 
 
 const ClockList = () => {
@@ -29,7 +29,7 @@ const ClockList = () => {
                 data={clocks}
                 style={{marginBottom: 15, marginTop: 30}}
                 renderItem={({item}) => <StreakCard
-                    handlePress={() => router.push(`/clocks/${item.addictionName}`)}
+                    handlePress={() => router.push(`/clocks/${item.id}`)}
                     id={item.id}
                     startDate={item.startDate}
                     relapses={item.relapses}

@@ -19,7 +19,15 @@ export async function getClockById(id) {
 export async function saveClock(startDate, relapses, addictionName) {
     const clocks = await getAllClocks();
     const today = new Date();
-    clocks.push({id: today, startDate: startDate, relapses: relapses, addictionName: addictionName});
+    const startDateObj = new Date(startDate);
+    clocks.push({
+        id: today,
+        startDate: startDateObj,
+        relapses: relapses,
+        addictionName: addictionName
+        //currentGoal: 7,
+        //personalBest: 0
+    });
     console.log(clocks)
     saveClocksToStorage(clocks);
 }
@@ -30,7 +38,8 @@ export async function editClock(id, startDate, addictionName) {
     console.log(clockIndex)
     const idDate = new Date(id);
     clocks[clockIndex].id = idDate;
-    clocks[clockIndex].startDate = startDate;
+    const startDateObj = new Date(startDate);
+    clocks[clockIndex].startDate = startDateObj;
     clocks[clockIndex].addictionName = addictionName;
     console.log(clocks);
     saveClocksToStorage(clocks);
@@ -44,4 +53,25 @@ export async function deleteClocks(id) {
     console.log(clockIndex)
     clocks.splice(clockIndex, 1)
     saveClocksToStorage(clocks);
+}
+
+// https://community.openhab.org/t/solved-calculate-duration-from-number-seconds/37445/4
+export async function getTime(startDate) {
+    //console.log("TIME:")
+    let today = new Date();
+    let startDateObj = new Date(startDate);
+    //console.log(today)
+    let seconds = (today.getTime() - startDateObj.getTime()) / 1000;
+    //console.log(seconds)
+    let secs = Math.floor(seconds % 60)
+    let mins = Math.floor((seconds / 60) % 60)
+    let hours = Math.floor((seconds / (60 * 60)) % 24)
+    let days = Math.floor(seconds / (60 * 60 * 24))
+    let time = {
+        seconds: secs,
+        minutes: mins,
+        hours: hours,
+        days: days
+    }
+    return time;
 }

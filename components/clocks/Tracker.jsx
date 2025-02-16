@@ -42,7 +42,11 @@ const renderThirdLayer = (percent, clock) => {
   }
 }
 
-const Tracker = ({ personalBestPercentage, goalProgressPercentage, currentStreakPercentage }) => {
+const Tracker = ({ time, clock }) => {
+  //console.log(time)
+  let personalBestPercentage = (time.days / 420) * 100;
+  let goalProgressPercentage = (time.days / 420) * 100;
+  let currentStreakPercentage = (time.days / 420) * 100;
   let personalBestProgress;
   let goalProgressProgress;
   let currentStreakProgress;
@@ -77,8 +81,8 @@ const Tracker = ({ personalBestPercentage, goalProgressPercentage, currentStreak
           {renderThirdLayer(currentStreakPercentage, "currentStreak")}
           <View style={styles.mainStreakTextContainer}>
             <Text style={styles.youAreText}>You are:</Text>
-            <Text style={styles.streakCounterNumber}>420</Text>
-            <Text style={styles.daysCleanText}>days clean</Text>
+            <Text style={styles.streakCounterNumber}>{time.days}</Text>
+            <Text style={styles.daysCleanText}>{time.days == 1 ? "day" : "days"} clean</Text>
           </View>
         </View>
       </View>
