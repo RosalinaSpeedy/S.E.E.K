@@ -5,7 +5,7 @@ import { useCallback, useState, useEffect } from "react";
 import { MainFooter, MainHeader, AddictionTitle, Tracker, ProgressLegend, RelapseButton, ClockChangeButtons, TrackerCalendar } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
 
-import { getClockById, getTime } from "../../services/clockService";
+import { getClockById, getTime, setPersonalBest } from "../../services/clockService";
 
 const Clock = () => {
     const params = useLocalSearchParams();
@@ -14,12 +14,26 @@ const Clock = () => {
     const [clock, setClock] = useState({});
     const [time, setTime] = useState({});
 
+    getClockById(params.id).then(clock => setClock(clock));
+    getTime(clock.startDate).then(timey => setTime(timey));
+
     useEffect(() => {
         //this doesn't exist yet but yeah:
         getClockById(params.id).then(clock => setClock(clock));
         getTime(clock.startDate).then(timey => setTime(timey));
+        
         //console.log(clocks)
+        
     });
+
+    useFocusEffect(() => {
+        //console.log(clock)
+        //console.log(time)
+        if (time.days > clock.personalBest) {
+            console.log("updating PB")
+            setPersonalBest(clock.id).then(clock => setClock(clock))
+        }
+    })
 
     if (time.days < 0) {
         //console.log("found negative days")

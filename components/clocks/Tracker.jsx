@@ -43,10 +43,10 @@ const renderThirdLayer = (percent, clock) => {
 }
 
 const Tracker = ({ time, clock }) => {
-  //console.log(time)
-  let personalBestPercentage = (time.days / 420) * 100;
-  let goalProgressPercentage = (time.days / 420) * 100;
-  let currentStreakPercentage = (time.days / 420) * 100;
+  //console.log((Math.floor(time.rawSeconds)) / (clock.personalBest * 86400) * 100)
+  let personalBestPercentage = Math.min(((Math.floor(time.rawSeconds)) / (clock.personalBest * 86400)) * 100, 100);
+  let goalProgressPercentage = Math.min(((Math.floor(time.rawSeconds)) / (clock.currentGoal * 86400)) * 100, 100);
+  let currentStreakPercentage = Math.min(((Math.floor(time.rawSeconds)) / (clock.personalBest * 86400)) * 100, 100);
   let personalBestProgress;
   let goalProgressProgress;
   let currentStreakProgress;

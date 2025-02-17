@@ -24,15 +24,15 @@ export async function saveClock(startDate, relapses, addictionName) {
         id: today,
         startDate: startDateObj,
         relapses: relapses,
-        addictionName: addictionName
-        //currentGoal: 7,
-        //personalBest: 0
+        addictionName: addictionName,
+        currentGoal: 7,
+        personalBest: 1
     });
     console.log(clocks)
     saveClocksToStorage(clocks);
 }
 
-export async function editClock(id, startDate, addictionName) {
+export async function editClock(id, startDate, addictionName, newGoal) {
     const clocks = await getAllClocks();
     const clockIndex = clock.findIndex(clock => clock.id === id);
     console.log(clockIndex)
@@ -41,6 +41,7 @@ export async function editClock(id, startDate, addictionName) {
     const startDateObj = new Date(startDate);
     clocks[clockIndex].startDate = startDateObj;
     clocks[clockIndex].addictionName = addictionName;
+    clocks[clockIndex].currentGoal = newGoal;
     console.log(clocks);
     saveClocksToStorage(clocks);
 }
@@ -53,6 +54,28 @@ export async function deleteClocks(id) {
     console.log(clockIndex)
     clocks.splice(clockIndex, 1)
     saveClocksToStorage(clocks);
+}
+
+export async function relapse(id) {
+    const clocks = await getAllClocks();
+    const clockIndex = clock.findIndex(clock => clock.id === id);
+    console.log(clockIndex)
+    const today = new Date();
+    clocks[clockIndex].relapses.push(today);
+    console.log(clocks);
+    saveClocksToStorage(clocks);
+}
+
+export async function setPersonalBest(id) {
+    const clocks = await getAllClocks();
+    const clockIndex = clocks.findIndex(clock => clock.id === id);
+    console.log(clockIndex)
+    let time = getTime(clocks[clockIndex].startDate)
+    //console.log(time)
+    clocks[clockIndex].personalBest = time._j.days;
+    console.log(clocks);
+    saveClocksToStorage(clocks);
+    return clocks[clockIndex];
 }
 
 // https://community.openhab.org/t/solved-calculate-duration-from-number-seconds/37445/4
@@ -71,7 +94,8 @@ export async function getTime(startDate) {
         seconds: secs,
         minutes: mins,
         hours: hours,
-        days: days
+        days: days,
+        rawSeconds: seconds
     }
     return time;
 }
