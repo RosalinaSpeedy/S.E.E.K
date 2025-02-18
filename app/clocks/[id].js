@@ -5,7 +5,7 @@ import { useCallback, useState, useEffect } from "react";
 import { MainFooter, MainHeader, AddictionTitle, Tracker, ProgressLegend, RelapseButton, ClockChangeButtons, TrackerCalendar } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
 
-import { getClockById, getTime, setPersonalBest } from "../../services/clockService";
+import { getClockById, getTime, relapse, setPersonalBest } from "../../services/clockService";
 
 const Clock = () => {
     const params = useLocalSearchParams();
@@ -67,7 +67,7 @@ const Clock = () => {
                         clock={clock}
                     />
                 </View>
-                <RelapseButton />
+                <RelapseButton handlePress={() => {relapse(clock.id)}}/>
             </ScrollView>
             <MainFooter />
         </SafeAreaView>

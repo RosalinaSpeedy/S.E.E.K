@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, ScrollView, SafeAreaView, Text, FlatList } from 'react-native';
 import { Stack, useRouter, useFocusEffect } from 'expo-router';
 
@@ -18,17 +18,17 @@ const ClockList = () => {
     useFocusEffect(() => {
         //this doesn't exist yet but yeah:
         getAllClocks().then(allClocks => setClocks(allClocks));
-        
+
         //console.log(clocks)
     });
-    
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
-            <MainHeader/>
+            <MainHeader />
             <FlatList
                 data={clocks}
-                style={{marginBottom: 15, marginTop: 30}}
-                renderItem={({item}) => <StreakCard
+                style={{ marginBottom: 15, marginTop: 30 }}
+                renderItem={({ item }) => <StreakCard
                     handlePress={() => router.push(`/clocks/${item.id}`)}
                     id={item.id}
                     startDate={item.startDate}
@@ -39,11 +39,11 @@ const ClockList = () => {
                 ListEmptyComponent={() => (
                     <View><Text>No streaks to display</Text></View>
                 )}
-                
-                ItemSeparatorComponent={() => <View style={{height: 10}} />}
+
+                ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
             />
-            <NewClockButton handlePress={() => router.push('/addnewclock/new')}/>
-            <MainFooter/>
+            <NewClockButton handlePress={() => router.push('/addnewclock/new')} />
+            <MainFooter />
         </SafeAreaView>
     )
 }

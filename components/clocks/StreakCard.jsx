@@ -3,7 +3,7 @@ import { Text, View, Image, TouchableOpacity } from 'react-native'
 
 import { router, useFocusEffect } from 'expo-router'
 
-import { getTime } from '../../services/clockService'
+import { deleteClocks, getTime } from '../../services/clockService'
 
 import styles from './clocks.style'
 import { icons } from '../../constants'
@@ -31,6 +31,12 @@ const StreakCard = ({ id, relapses, startDate, addictionName, handlePress }) => 
             </Text>
           </View>
         </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.editButton} onPress={() => router.push(`addnewclock/${id}`)}>
+        <Text style={styles.deleteText}>Edit</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.deleteButton} onPress={() => deleteClocks(id)}>
+        <Text style={styles.deleteText}>Delete</Text>
       </TouchableOpacity>
     </View>
 

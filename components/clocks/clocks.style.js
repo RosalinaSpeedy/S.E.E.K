@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     borderLeftColor: '#00000001', //https://github.com/facebook/react-native/issues/34722
     borderBottomColor: '#00000001',
     borderWidth: clockSize / 18,
-    transform: [{rotateZ: '-135deg'}]
+    transform: [{ rotateZ: '-135deg' }]
   },
   personalBestOffset: {
     position: 'absolute',
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#00000001',
     borderRightColor: '#808080',
     borderTopColor: '#808080',
-    transform:[{rotateZ: '-135deg'}]
+    transform: [{ rotateZ: '-135deg' }]
   },
   secondPersonalBestProgressBar: {
     position: 'absolute',
@@ -181,10 +181,10 @@ const styles = StyleSheet.create({
     borderRadius: clockSize / 2,
     borderLeftColor: '#00000001',
     borderBottomColor: '#00000001', //https://github.com/facebook/react-native/issues/34722
-    borderTopColor: '#BF5031', 
+    borderTopColor: '#BF5031',
     borderRightColor: '#BF5031',
     borderWidth: clockSize / 18,
-    transform: [{rotateZ: '45deg'}]
+    transform: [{ rotateZ: '45deg' }]
   },
   goalProgressProgressBar: {
     position: 'absolute',
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     borderLeftColor: '#00000001', //https://github.com/facebook/react-native/issues/34722
     borderBottomColor: '#00000001',
     borderWidth: clockSize / 18,
-    transform: [{rotateZ: '-135deg'}]
+    transform: [{ rotateZ: '-135deg' }]
   },
   goalProgressOffset: {
     position: 'absolute',
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#00000001',
     borderRightColor: '#808080',
     borderTopColor: '#808080',
-    transform:[{rotateZ: '-135deg'}]
+    transform: [{ rotateZ: '-135deg' }]
   },
   secondGoalProgressProgressBar: {
     position: 'absolute',
@@ -217,10 +217,10 @@ const styles = StyleSheet.create({
     borderRadius: (clockSize * 0.85) / 2,
     borderLeftColor: '#00000001',
     borderBottomColor: '#00000001', //https://github.com/facebook/react-native/issues/34722
-    borderTopColor: '#F0A202', 
+    borderTopColor: '#F0A202',
     borderRightColor: '#F0A202',
     borderWidth: clockSize / 18,
-    transform: [{rotateZ: '45deg'}]
+    transform: [{ rotateZ: '45deg' }]
   },
   currentStreakProgressBar: {
     position: 'absolute',
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     borderLeftColor: '#00000001', //https://github.com/facebook/react-native/issues/34722
     borderBottomColor: '#00000001',
     borderWidth: clockSize / 18,
-    transform: [{rotateZ: '-135deg'}]
+    transform: [{ rotateZ: '-135deg' }]
   },
   currentStreakOffset: {
     position: 'absolute',
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#00000001',
     borderRightColor: '#808080',
     borderTopColor: '#808080',
-    transform:[{rotateZ: '-135deg'}]
+    transform: [{ rotateZ: '-135deg' }]
   },
   secondCurrentStreakProgressBar: {
     position: 'absolute',
@@ -253,10 +253,10 @@ const styles = StyleSheet.create({
     borderRadius: (clockSize * 0.7) / 2,
     borderLeftColor: '#00000001',
     borderBottomColor: '#00000001', //https://github.com/facebook/react-native/issues/34722
-    borderTopColor: '#06D6A0', 
+    borderTopColor: '#06D6A0',
     borderRightColor: '#06D6A0',
     borderWidth: clockSize / 18,
-    transform: [{rotateZ: '45deg'}]
+    transform: [{ rotateZ: '45deg' }]
   },
   streakCardContainer: {
     alignSelf: 'center',
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
   newClockButtonText: {
     fontWeight: 'bold',
     color: 'white',
-    
+
   },
   createClockButton: {
     backgroundColor: '#06D6A0',
@@ -310,7 +310,17 @@ const styles = StyleSheet.create({
     padding: '2%',
     alignSelf: 'center',
     marginTop: '2%',
-    marginBottom: '3%'
+    marginBottom: '3%',
+    marginBottom: 50,
+    marginTop: 15
+  },
+  streakNumberInput: {
+    borderWidth: 2,
+    borderRadius: 5,
+    textAlign: 'justify',
+    alignContent: 'flex-start',
+    margin: '1%',
+    width: '30%'
   },
   clockNameInput: {
     borderWidth: 2,
@@ -330,6 +340,32 @@ const styles = StyleSheet.create({
   },
   addNewCalendarContainer: {
     height: clockSize,
+  },
+  deleteButton: {
+    position: 'absolute',
+    right: 5,
+    bottom: 5,
+    backgroundColor: '#E11313',
+    width: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 2,
+    borderRadius: 40,
+  },
+  deleteText: {
+    color: 'white',
+    fontSize: SIZES.xSmall
+  },
+  editButton: {
+    position: 'absolute',
+    right: 5,
+    top: 5,
+    backgroundColor: '#06D6A0',
+    width: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 2,
+    borderRadius: 40,
   }
 });
 

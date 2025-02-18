@@ -3,10 +3,10 @@ import { Text } from 'react-native'
 
 import styles from './clocks.style'
 
-const AddNewTitle = () => {
+const AddNewTitle = ({clock}) => {
   return (
     <Text style={styles.addNewTitle}>
-      Create new clock
+      {clock.addictionName ? `Edit clock` : `Create new clock`}
     </Text>
   )
 }

@@ -13,10 +13,11 @@ export async function saveClocksToStorage(clocks) {
 
 export async function getClockById(id) {
     const clocks = await getAllClocks();
+    //console.log(clocks.find(clock => clock.id === id))
     return clocks.find(clock => clock.id === id);
 }
 
-export async function saveClock(startDate, relapses, addictionName) {
+export async function saveClock(startDate, relapses, addictionName, goal) {
     const clocks = await getAllClocks();
     const today = new Date();
     const startDateObj = new Date(startDate);
@@ -25,8 +26,8 @@ export async function saveClock(startDate, relapses, addictionName) {
         startDate: startDateObj,
         relapses: relapses,
         addictionName: addictionName,
-        currentGoal: 7,
-        personalBest: 1
+        currentGoal: goal,
+        personalBest: 0
     });
     console.log(clocks)
     saveClocksToStorage(clocks);
@@ -34,7 +35,8 @@ export async function saveClock(startDate, relapses, addictionName) {
 
 export async function editClock(id, startDate, addictionName, newGoal) {
     const clocks = await getAllClocks();
-    const clockIndex = clock.findIndex(clock => clock.id === id);
+    //console.log(id)
+    const clockIndex = clocks.findIndex(clock => clock.id === id);
     console.log(clockIndex)
     const idDate = new Date(id);
     clocks[clockIndex].id = idDate;
@@ -47,9 +49,9 @@ export async function editClock(id, startDate, addictionName, newGoal) {
 }
 
 export async function deleteClocks(id) {
-    console.log("id is: " + id)
+    //console.log("id is: " + id)
     const clocks = await getAllClocks();
-    console.log(clocks);
+    //console.log(clocks);
     const clockIndex = clocks.findIndex(clock => clock.id === id);
     console.log(clockIndex)
     clocks.splice(clockIndex, 1)
