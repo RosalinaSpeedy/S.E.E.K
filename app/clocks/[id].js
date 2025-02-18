@@ -30,7 +30,7 @@ const Clock = () => {
         //console.log(clock)
         //console.log(time)
         if (time.days > clock.personalBest) {
-            console.log("updating PB")
+            //console.log("updating PB")
             setPersonalBest(clock.id).then(clock => setClock(clock))
         }
     })

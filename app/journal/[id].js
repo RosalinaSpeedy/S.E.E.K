@@ -18,16 +18,16 @@ const AddEntry = ({entryData}) => {
     }
 
     async function saveButtonPress() {
-        console.log("saving...")
-        console.log(text)
+        //console.log("saving...")
+        //console.log(text)
         if (!text || text == '') {
             Alert.alert("Enter an entry!", 'Your entry is empty!');
             return;
         }
         if (id) {
-            console.log("id found")
+            //console.log("id found")
             await editEntry(id, text);
-            console.log("entry edited")
+            //console.log("entry edited")
         } else {
             await saveEntry(text);
         }

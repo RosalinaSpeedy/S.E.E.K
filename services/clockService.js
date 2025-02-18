@@ -29,7 +29,7 @@ export async function saveClock(startDate, relapses, addictionName, goal) {
         currentGoal: goal,
         personalBest: 0
     });
-    console.log(clocks)
+    //console.log(clocks)
     saveClocksToStorage(clocks);
 }
 
@@ -37,14 +37,14 @@ export async function editClock(id, startDate, addictionName, newGoal) {
     const clocks = await getAllClocks();
     //console.log(id)
     const clockIndex = clocks.findIndex(clock => clock.id === id);
-    console.log(clockIndex)
+    //console.log(clockIndex)
     const idDate = new Date(id);
     clocks[clockIndex].id = idDate;
     const startDateObj = new Date(startDate);
     clocks[clockIndex].startDate = startDateObj;
     clocks[clockIndex].addictionName = addictionName;
     clocks[clockIndex].currentGoal = newGoal;
-    console.log(clocks);
+    //console.log(clocks);
     saveClocksToStorage(clocks);
 }
 
@@ -53,7 +53,7 @@ export async function deleteClocks(id) {
     const clocks = await getAllClocks();
     //console.log(clocks);
     const clockIndex = clocks.findIndex(clock => clock.id === id);
-    console.log(clockIndex)
+    //console.log(clockIndex)
     clocks.splice(clockIndex, 1)
     saveClocksToStorage(clocks);
 }
@@ -61,21 +61,21 @@ export async function deleteClocks(id) {
 export async function relapse(id) {
     const clocks = await getAllClocks();
     const clockIndex = clock.findIndex(clock => clock.id === id);
-    console.log(clockIndex)
+    //console.log(clockIndex)
     const today = new Date();
     clocks[clockIndex].relapses.push(today);
-    console.log(clocks);
+    //console.log(clocks);
     saveClocksToStorage(clocks);
 }
 
 export async function setPersonalBest(id) {
     const clocks = await getAllClocks();
     const clockIndex = clocks.findIndex(clock => clock.id === id);
-    console.log(clockIndex)
+    //console.log(clockIndex)
     let time = getTime(clocks[clockIndex].startDate)
     //console.log(time)
     clocks[clockIndex].personalBest = time._j.days;
-    console.log(clocks);
+    //console.log(clocks);
     saveClocksToStorage(clocks);
     return clocks[clockIndex];
 }

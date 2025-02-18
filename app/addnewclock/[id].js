@@ -33,8 +33,8 @@ const AddNew = () => {
     }, []);
 
     async function saveButtonPress() {
-        console.log("saving...")
-        console.log(text)
+        //console.log("saving...")
+        //console.log(text)
         if (!text || text == '') {
             Alert.alert("Enter a name!", 'Your clock does not have a name!');
             return;
@@ -43,17 +43,17 @@ const AddNew = () => {
             Alert.alert("Error with date!", 'There was a problem getting the date!');
             return;
         }
-        console.log("date and name ok")
-        console.log(id)
+        //console.log("date and name ok")
+        //console.log(id)
         if (id && id !== "new") {
-            console.log("id found")
-            console.log(selected)
+            //console.log("id found")
+            //console.log(selected)
             await editClock(id, selected, text, goal);
-            console.log("clock edited")
+            //console.log("clock edited")
         } else {
-            console.log("id not found");
+            //console.log("id not found");
             await saveClock(selected, [], text, goal);
-            console.log("clock created")
+            //console.log("clock created")
         }
         router.push('/clocks/list');
     }
