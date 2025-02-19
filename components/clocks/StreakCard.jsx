@@ -13,7 +13,11 @@ const StreakCard = ({ id, relapses, startDate, addictionName, handlePress }) => 
 
   useEffect(() => {
     //this doesn't exist yet but yeah:
-    getTime(startDate).then(timey => setTime(timey));
+    if (relapses?.length > 0) {
+      getTime(relapses[relapses.length - 1]).then(timey => setTime(timey));
+    } else {
+      getTime(startDate).then(timey => setTime(timey));
+    }
 
     //console.log(clocks)
   });

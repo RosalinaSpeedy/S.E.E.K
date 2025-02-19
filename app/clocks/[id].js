@@ -20,8 +20,12 @@ const Clock = () => {
     useEffect(() => {
         //this doesn't exist yet but yeah:
         getClockById(params.id).then(clock => setClock(clock));
-        getTime(clock.startDate).then(timey => setTime(timey));
-        
+        //console.log(clock.relapses)
+        if (clock?.relapses?.length > 0) {
+            getTime(clock.relapses[clock.relapses.length - 1]).then(timey => setTime(timey));
+        } else {
+            getTime(clock.startDate).then(timey => setTime(timey));
+        }
         //console.log(clocks)
         
     });

@@ -60,7 +60,7 @@ export async function deleteClocks(id) {
 
 export async function relapse(id) {
     const clocks = await getAllClocks();
-    const clockIndex = clock.findIndex(clock => clock.id === id);
+    const clockIndex = clocks.findIndex(clock => clock.id === id);
     //console.log(clockIndex)
     const today = new Date();
     clocks[clockIndex].relapses.push(today);
