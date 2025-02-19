@@ -1,4 +1,4 @@
-import { Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity } from "react-native";
+import { Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity, Alert } from "react-native";
 import { Stack, useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
 import { useCallback, useState, useEffect } from "react";
 
@@ -14,6 +14,18 @@ const Clock = () => {
     const [clock, setClock] = useState({});
     const [time, setTime] = useState({});
 
+    //https://reactnative.dev/docs/alert
+    const createTwoButtonAlert = (clock) => {
+        Alert.alert('You ok?', `You are about to log a relapse for:\n${clock.addictionName}\n\nYou sure?`, [
+            {
+                text: `Cancel`,
+                onPress: () => { console.log('relapse cancelled') },
+                style: 'cancel',
+            },
+            { text: `I'm sure`, onPress: () => relapse(clock.id) },
+        ]);
+    }
+
     getClockById(params.id).then(clock => setClock(clock));
     getTime(clock.startDate).then(timey => setTime(timey));
 
@@ -27,7 +39,7 @@ const Clock = () => {
             getTime(clock.startDate).then(timey => setTime(timey));
         }
         //console.log(clocks)
-        
+
     });
 
     useFocusEffect(() => {
@@ -57,21 +69,21 @@ const Clock = () => {
                     {clockState ? <Tracker
                         time={time}
                         clock={clock}
-                        // personalBestPercentage={40}
-                        // goalProgressPercentage={68}
-                        // currentStreakPercentage={100}
+                    // personalBestPercentage={40}
+                    // goalProgressPercentage={68}
+                    // currentStreakPercentage={100}
                     /> : <TrackerCalendar />}
                 </View>
                 <View>
                     <ClockChangeButtons setClockState={setClockState} />
                 </View>
                 <View>
-                    <ProgressLegend 
+                    <ProgressLegend
                         time={time}
                         clock={clock}
                     />
                 </View>
-                <RelapseButton handlePress={() => {relapse(clock.id)}}/>
+                <RelapseButton handlePress={() => { createTwoButtonAlert(clock) }} />
             </ScrollView>
             <MainFooter />
         </SafeAreaView>

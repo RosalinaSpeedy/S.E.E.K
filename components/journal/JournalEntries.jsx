@@ -1,5 +1,5 @@
-import React, {useState, useCallback} from 'react'
-import { Text, View, Image, TouchableOpacity, FlatList } from 'react-native'
+import React, { useState, useCallback } from 'react'
+import { Text, View, Image, TouchableOpacity, FlatList, Alert } from 'react-native'
 import { useFocusEffect } from 'expo-router';
 
 import styles from './journal.style'
@@ -19,6 +19,19 @@ function limitCharacters(text) {
 
 const Entry = ({ id, date, body, emotion }) => {
     const router = useRouter();
+
+    //https://reactnative.dev/docs/alert
+    const createTwoButtonAlert = () => {
+        Alert.alert('Deleting entry', `You are about to delete entry:\n${date}\n\nYou sure?`, [
+            {
+                text: `Cancel`,
+                onPress: () => { console.log('relapse cancelled') },
+                style: 'cancel',
+            },
+            { text: `Delete`, onPress: () => { deleteEntry(id) } },
+        ]);
+    }
+
     let emotionIcon;
     switch (emotion) {
         case "smiley":
@@ -34,10 +47,10 @@ const Entry = ({ id, date, body, emotion }) => {
     return (
         <View style={styles.entryContainer}>
             <TouchableOpacity style={styles.entryCard} onPress={() => router.push(`/journal/${id}`)}>
-                
+
                 <Text style={styles.entryDate}>{date}</Text>
                 <Text style={styles.entryBody}>{limitCharacters(body)}</Text>
-                <TouchableOpacity style={styles.entryDeleteButton} onPress={() => {deleteEntry(id)}}>
+                <TouchableOpacity style={styles.entryDeleteButton} onPress={() => { createTwoButtonAlert() }}>
                     <Text style={styles.entryDeleteText}>Delete</Text>
                 </TouchableOpacity>
                 <View style={styles.entryEmotionContainer}>
@@ -63,7 +76,7 @@ const JournalEntries = () => {
         <View>
             <View><FlatList
                 data={entries}
-                renderItem={({item}) => <Entry
+                renderItem={({ item }) => <Entry
                     id={item.id}
                     emotion={item.emotion}
                     date={item.date}
@@ -75,7 +88,7 @@ const JournalEntries = () => {
                 )}
                 scrollEnabled={false}
                 style={styles.entriesFlatList}
-                ItemSeparatorComponent={() => <View style={{height: 20}} />}
+                ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
             /></View>
             {/* <Entry
                 entryData={{
