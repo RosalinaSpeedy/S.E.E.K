@@ -35,10 +35,10 @@ const Clock = () => {
         //console.log(clock.relapses)
         if (clock?.relapses?.length > 0 && clock) {
             getTime(clock.relapses[clock.relapses.length - 1]).then(timey => setTime(timey));
-        } else {
+        } else if (clock) {
             getTime(clock.startDate).then(timey => setTime(timey));
         }
-        if (time.days > clock.currentStreak) {
+        if (time.days > clock.currentStreak && clock) {
             //console.log("updating PB")
             updateStreak(clock.id, clock.currentStreak + 7).then(clock => setClock(clock))
         }
