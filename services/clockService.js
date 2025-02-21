@@ -27,7 +27,8 @@ export async function saveClock(startDate, relapses, addictionName, goal) {
         relapses: relapses,
         addictionName: addictionName,
         currentGoal: goal,
-        personalBest: 0
+        personalBest: 0,
+        currentStreak: 7
     });
     //console.log(clocks)
     saveClocksToStorage(clocks);
@@ -64,6 +65,7 @@ export async function relapse(id) {
     //console.log(clockIndex)
     const today = new Date();
     clocks[clockIndex].relapses.push(today);
+    clocks[clockIndex].currentStreak = 7;
     //console.log(clocks);
     saveClocksToStorage(clocks);
 }
@@ -100,4 +102,14 @@ export async function getTime(startDate) {
         rawSeconds: seconds
     }
     return time;
+}
+
+export async function updateStreak(id, streak) {
+    const clocks = await getAllClocks();
+    const clockIndex = clocks.findIndex(clock => clock.id === id);
+    //console.log(time)
+    clocks[clockIndex].currentStreak = streak;
+    //console.log(clocks);
+    saveClocksToStorage(clocks);
+    return clocks[clockIndex];
 }

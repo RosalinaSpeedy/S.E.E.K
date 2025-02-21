@@ -5,7 +5,7 @@ import { useCallback, useState, useEffect } from "react";
 import { MainFooter, MainHeader, AddictionTitle, Tracker, ProgressLegend, RelapseButton, ClockChangeButtons, TrackerCalendar } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
 
-import { getClockById, getTime, relapse, setPersonalBest } from "../../services/clockService";
+import { getClockById, getTime, relapse, setPersonalBest, updateStreak } from "../../services/clockService";
 
 const Clock = () => {
     const params = useLocalSearchParams();
@@ -33,10 +33,14 @@ const Clock = () => {
         //this doesn't exist yet but yeah:
         getClockById(params.id).then(clock => setClock(clock));
         //console.log(clock.relapses)
-        if (clock?.relapses?.length > 0) {
+        if (clock?.relapses?.length > 0 && clock) {
             getTime(clock.relapses[clock.relapses.length - 1]).then(timey => setTime(timey));
         } else {
             getTime(clock.startDate).then(timey => setTime(timey));
+        }
+        if (time.days > clock.currentStreak) {
+            //console.log("updating PB")
+            updateStreak(clock.id, clock.currentStreak + 7).then(clock => setClock(clock))
         }
         //console.log(clocks)
 
