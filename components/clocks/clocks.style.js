@@ -366,6 +366,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 2,
     borderRadius: 40,
+  },
+  relapseRing: {
+    borderWidth: 2,
+    borderColor: '#f00',
+    width: 25,
+    height: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 15
+  },
+  dateRing: {
+    borderWidth: 2,
+    borderColor: '#808080',
+    width: 25,
+    height: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 15
+  },
+  todayRing: {
+    borderWidth: 2,
+    borderColor: '#06D6A0',
+    width: 25,
+    height: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 15
   }
 });
 

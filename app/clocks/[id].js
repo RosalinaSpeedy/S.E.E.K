@@ -14,6 +14,23 @@ const Clock = () => {
     const [clock, setClock] = useState({});
     const [time, setTime] = useState({});
 
+    useEffect(() => {
+        //this doesn't exist yet but yeah:
+        getClockById(params.id).then((clock) => {setClock(clock)
+        //console.log(clock.relapses)
+        if (clock?.relapses?.length > 0 && clock) {
+            getTime(clock.relapses[clock.relapses.length - 1]).then(timey => setTime(timey));
+        } else if (clock) {
+            getTime(clock.startDate).then(timey => setTime(timey));
+        }});
+        if (time.days > clock.currentStreak && clock) {
+            //console.log("updating streak")
+            updateStreak(clock.id, clock.currentStreak + 7).then(clock => setClock(clock))
+        }
+        //console.log(clocks)
+
+    });
+
     //https://reactnative.dev/docs/alert
     const createTwoButtonAlert = (clock) => {
         Alert.alert('You ok?', `You are about to log a relapse for:\n${clock.addictionName}\n\nYou sure?`, [
@@ -26,25 +43,9 @@ const Clock = () => {
         ]);
     }
 
-    getClockById(params.id).then(clock => setClock(clock));
-    getTime(clock.startDate).then(timey => setTime(timey));
+    //getClockById(params.id).then(clock => setClock(clock));
+    //getTime(clock.startDate).then(timey => setTime(timey));
 
-    useEffect(() => {
-        //this doesn't exist yet but yeah:
-        getClockById(params.id).then(clock => setClock(clock));
-        //console.log(clock.relapses)
-        if (clock?.relapses?.length > 0 && clock) {
-            getTime(clock.relapses[clock.relapses.length - 1]).then(timey => setTime(timey));
-        } else if (clock) {
-            getTime(clock.startDate).then(timey => setTime(timey));
-        }
-        if (time.days > clock.currentStreak && clock) {
-            //console.log("updating PB")
-            updateStreak(clock.id, clock.currentStreak + 7).then(clock => setClock(clock))
-        }
-        //console.log(clocks)
-
-    });
 
     useFocusEffect(() => {
         //console.log(clock)
@@ -76,7 +77,7 @@ const Clock = () => {
                     // personalBestPercentage={40}
                     // goalProgressPercentage={68}
                     // currentStreakPercentage={100}
-                    /> : <TrackerCalendar />}
+                    /> : <TrackerCalendar relapses={clock.relapses}/>}
                 </View>
                 <View>
                     <ClockChangeButtons setClockState={setClockState} />
