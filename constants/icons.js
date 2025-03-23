@@ -23,6 +23,7 @@ import neutral from '../assets/icons/neutral.png'
 import sad from '../assets/icons/sad.png'
 import tickbox from '../assets/icons/tickbox.png'
 import goldTrophy from '../assets/icons/trophy.png'
+import tripleDots from '../assets/icons/tripledots.png'
 
 
 export default {
@@ -50,5 +51,6 @@ export default {
   neutral,
   sad,
   tickbox,
-  goldTrophy
+  goldTrophy,
+  tripleDots
 };

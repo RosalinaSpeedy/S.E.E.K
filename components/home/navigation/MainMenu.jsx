@@ -27,6 +27,7 @@ const MainMenu = () => {
                     <RoundedSquareButton
                         iconUrl={icons.speechbubble}
                         title={"forum"}
+                        handlePress={() => router.push('/login/login')}
                     />
                     <RoundedSquareButton
                         iconUrl={icons.book}

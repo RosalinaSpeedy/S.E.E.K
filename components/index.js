@@ -51,6 +51,18 @@ import TriggerInputs from "./quiz/TriggerInputs";
 import GenerateButton from "./quiz/GenerateButton";
 import BackButton from "./quiz/BackButton";
 
+// login
+import BigSeekLogo from "./login/BigSeekLogo";
+import LoginBoxes from "./login/LoginBoxes";
+import LoginButton from "./login/LoginButton";
+import RegisterButton from "./login/RegisterButton";
+import SeekTagline from "./login/SeekTagline";
+import WelcomeBackTitle from "./login/WelcomeBackTitle";
+
+// posts
+import ForumTitle from "./forum/ForumTitle";
+import Posts from "./forum/Posts";
+
 // job details screen
 import Company from "./jobdetails/company/Company";
 import { default as JobTabs } from "./jobdetails/tabs/Tabs";
@@ -109,5 +121,13 @@ export {
   NewClockButton,
   AddNewTitle,
   ClockInputs,
-  CreateClockButton
+  CreateClockButton,
+  BigSeekLogo,
+  LoginBoxes,
+  RegisterButton,
+  LoginButton,
+  SeekTagline,
+  WelcomeBackTitle,
+  ForumTitle,
+  Posts
 };
