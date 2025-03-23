@@ -43,7 +43,7 @@ const MainMenu = () => {
                     />
                 </View>
                 <Quotes
-                    quote={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet sagittis."}
+                    quote={"This should not appear."}
                 />
             </ScrollView>
         </View>
