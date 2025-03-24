@@ -26,14 +26,17 @@ export async function getQuote() {
     console.log("initial values:")
     console.log(quoteGot);
     let today = new Date();
-    let date = await getDay();
+    let date = new Date(await getDay());
     console.log(date)
     console.log(quoteGot[0])
-    if (quoteGot.length === 2 || !quoteGot || (today !== date && (today.getHours >= 5 && (today.getMinutes > 0 || today.getSeconds > 0)))) {
+    console.log(today === date)
+    console.log(today.getHours() + " " + today.getMinutes() + " " + today.getSeconds() + " ")
+    if (quoteGot.length === 2 || !quoteGot || (today.toISOString().split("T")[0] !== date.toISOString().split("T")[0] && (today.getHours() >= 5 && (today.getMinutes() > 0 || today.getSeconds() > 0)))) {
         console.log("failed to get quote: date -")
-        console.log(date);
-        if (date.length === 2 || !date || today !== date) {
-            if (date.length === 0 || !date || (today.getHours >= 5 && (today.getMinutes > 0 || today.getSeconds > 0))) {
+        console.log(date.length);
+        console.log(date)
+        if (date.length === 2 || !date || today.toISOString().split("T")[0] !== date.toISOString().split("T")[0]) {
+            if (date.length === 0 || !date || (today.getHours() >= 5 && (today.getMinutes() > 0 || today.getSeconds() > 0))) {
                 await saveDay(today);
                 date = await getDay();
             }
@@ -52,6 +55,8 @@ export async function saveQuote(quote) {
 
 export async function getDay() {
     const currentDay = (await AsyncStorage.getItem(KEY + "_DAY")) ?? '[]';
+    console.log("DAY:")
+    console.log(currentDay)
     return JSON.parse(currentDay);
 }
 

@@ -1,13 +1,15 @@
 import React from 'react'
 import { Text, TouchableOpacity, View, Image } from 'react-native'
+import { useRouter } from 'expo-router'
 
 import styles from './forum.style'
 import AddButton from '../journal/AddButton'
 import { icons } from '../../constants'
 
 const PostEntry = ({title, username, comments}) => {
+    const router = useRouter();
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push('/forum/id')}>
             <View style={styles.postCard}>
                 <View style={styles.textContainer}>
                     <Text>

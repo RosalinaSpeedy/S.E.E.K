@@ -10,7 +10,7 @@ const Quotes = ({ quotey }) => {
 
   useEffect(() => {
     getQuote().then(quote => setQuote(quote));
-    console.log
+    console.log(quote)
   }, []);
 
   return (
