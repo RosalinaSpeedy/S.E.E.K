@@ -62,6 +62,10 @@ import WelcomeBackTitle from "./login/WelcomeBackTitle";
 // posts
 import ForumTitle from "./forum/ForumTitle";
 import Posts from "./forum/Posts";
+import PostSection from "./forum/PostSection";
+import PostTitleCard from "./forum/PostTitleCard";
+import CommentBox from "./forum/CommentBox";
+import CommentsSection from "./forum/CommentsSection";
 
 // job details screen
 import Company from "./jobdetails/company/Company";
@@ -129,5 +133,9 @@ export {
   SeekTagline,
   WelcomeBackTitle,
   ForumTitle,
-  Posts
+  Posts,
+  PostSection,
+  PostTitleCard,
+  CommentBox,
+  CommentsSection
 };
