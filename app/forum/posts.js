@@ -17,7 +17,11 @@ const ForumHome = () => {
                 <Posts/>
                 
             </ScrollView>
-            <AddButton/>
+            <AddButton
+                handlePress={() => {
+                    router.push(`/forum/addnew/blank`);
+                }}
+            />
             <MainFooter/>
         </SafeAreaView>
     )

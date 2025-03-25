@@ -101,7 +101,40 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         alignContent: 'flex-start',
         textAlignVertical: 'top',
-    }
+    },
+    addPostBox: {
+        borderWidth: 2,
+        width: '96%',
+        height: 460,
+        borderRadius: 5,
+        alignSelf: 'center',
+        textAlign: 'justify',
+        alignContent: 'flex-start',
+        textAlignVertical: 'top',
+        marginBottom: '5%'
+    },
+    postButton: {
+        position: 'absolute',
+        right: 20,
+        bottom: -50,
+        backgroundColor: '#06D6A0',
+        width: 80,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        borderRadius: 40,
+    },
+    postText: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20,
+        alignSelf: 'center'
+    },
+    postTitle: {
+        fontSize: SIZES.xLarge,
+        color: '#F0A202',
+        padding: '5%',
+    },
 });
 
 export default styles;

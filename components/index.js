@@ -66,6 +66,9 @@ import PostSection from "./forum/PostSection";
 import PostTitleCard from "./forum/PostTitleCard";
 import CommentBox from "./forum/CommentBox";
 import CommentsSection from "./forum/CommentsSection";
+import NewPostInput from "./forum/NewPostInput"
+import NewPostTitle from "./forum/NewPostTitle";
+import PostButton from "./forum/PostButton"
 
 // job details screen
 import Company from "./jobdetails/company/Company";
@@ -137,5 +140,8 @@ export {
   PostSection,
   PostTitleCard,
   CommentBox,
-  CommentsSection
+  CommentsSection,
+  NewPostInput,
+  PostButton,
+  NewPostTitle
 };
