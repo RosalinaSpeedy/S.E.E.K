@@ -3,10 +3,10 @@ import { Text } from 'react-native'
 
 import styles from './login.style'
 
-const WelcomeBackTitle = () => {
+const WelcomeBackTitle = ({type}) => {
   return (
     <Text style={styles.welcomeBackTitle}>
-      Welcome Back!
+      {type}
     </Text>
   )
 }

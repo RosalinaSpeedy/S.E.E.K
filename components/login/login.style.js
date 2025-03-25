@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
         padding: '2%',
         borderRadius: 40,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        zIndex: 9
     },
     loginText: {
         fontSize: SIZES.large,
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
     registerButton: {
         alignSelf: 'center',
         marginTop: 9,
+        zIndex: 9
     },
     registerText: {
         color: '#D95D39',

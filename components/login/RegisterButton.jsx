@@ -3,9 +3,9 @@ import { Text, TouchableOpacity, View } from 'react-native'
 
 import styles from './login.style'
 
-const RegisterButton = () => {
+const RegisterButton = ({handlePress}) => {
   return (
-    <TouchableOpacity style={styles.registerButton}>
+    <TouchableOpacity style={styles.registerButton} onPress={handlePress}>
         <View>
             <Text style={styles.registerText}>
                 Register...

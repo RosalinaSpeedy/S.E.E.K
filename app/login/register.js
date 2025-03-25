@@ -4,8 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 
 import { MainFooter, MainHeader, WelcomeBackTitle, LoginBoxes, LoginButton, RegisterButton, BigSeekLogo, SeekTagline } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
+//import { getAllEntries, setEntries } from "../../services/journalService";
 
-const Login = () => {
+const Register = () => {
     const router = useRouter();
 
     return (
@@ -13,19 +14,14 @@ const Login = () => {
             <MainHeader />
             <ScrollView>
                 <WelcomeBackTitle 
-                    type="Welcome Back!"
+                    type="Register for S.E.E.K"
                 />
                 <LoginBoxes />
-                <LoginButton 
+                <LoginButton
                     handlePress={() => {
-                        router.push('forum/posts')
+                        router.push('login/login')
                     }} 
-                    type="Log in"
-                />
-                <RegisterButton 
-                    handlePress={() => {
-                        router.push('login/register')
-                    }} 
+                    type="Register"
                 />
                 <BigSeekLogo />
                 <SeekTagline />
@@ -35,4 +31,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Register;
