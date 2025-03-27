@@ -58,6 +58,7 @@ import LoginButton from "./login/LoginButton";
 import RegisterButton from "./login/RegisterButton";
 import SeekTagline from "./login/SeekTagline";
 import WelcomeBackTitle from "./login/WelcomeBackTitle";
+import RegisterBoxes from "./login/RegisterBoxes";
 
 // posts
 import ForumTitle from "./forum/ForumTitle";
@@ -143,5 +144,6 @@ export {
   CommentsSection,
   NewPostInput,
   PostButton,
-  NewPostTitle
+  NewPostTitle,
+  RegisterBoxes
 };

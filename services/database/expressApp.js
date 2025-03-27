@@ -12,6 +12,8 @@ var mysql = require('mysql2')
 
 // Create the express application object
 const app = express()
+var cors = require('cors');
+app.use(cors());
 const port = 8000
 
 // Set up the body parser 
