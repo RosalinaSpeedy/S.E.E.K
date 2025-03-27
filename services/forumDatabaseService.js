@@ -5,18 +5,29 @@ import Constants from "expo-constants"
 //https://stackoverflow.com/questions/47417766/calling-locally-hosted-server-from-expo-app
 const baseUrl = `http://${Constants.expoConfig?.hostUri?.split(':').shift()?.concat(':8000/api')}`;
 
+//https://stackoverflow.com/questions/51143730/axios-posting-empty-request
 export async function registerUser(email, username, password) {
+    console.log(email)
+    console.log(username)
+    console.log(password)
     try {
-        console.log(baseUrl)
-        const response = await fetch(
-            baseUrl + '/test'
-        );
-        const json = await response.json();
-        console.log(json)
-        // return json;
-        // await axios.get(baseUrl + '/test').then(response => {
-        //     console.log('user registered:', response.data);
-        // });
+        // console.log(baseUrl)
+        // const response = await fetch(
+        //     baseUrl + '/test'
+        // );
+        // const json = await response.json();
+        // console.log(json)
+        // // return json;
+
+        await axios.post(`${baseUrl}/registeruser`, {
+            email: email,
+            username: username,
+            password: password
+          }, {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+          }).then(response => {
+            console.log('user registered:', response.data);
+        });
     } catch (error) {
         console.log('Error registering user:', error);
     }
