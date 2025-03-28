@@ -5,8 +5,13 @@ import { useCallback, useEffect, useState } from "react";
 import { MainFooter, MainHeader, WelcomeBackTitle, LoginBoxes, LoginButton, RegisterButton, BigSeekLogo, SeekTagline } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
 
+import { logIn } from "../../services/forumDatabaseService";
+
 const Login = () => {
     const router = useRouter();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -15,9 +20,13 @@ const Login = () => {
                 <WelcomeBackTitle 
                     type="Welcome Back!"
                 />
-                <LoginBoxes />
+                <LoginBoxes 
+                    onEmailChangeFunction={setEmail}
+                    onPasswordChangeFunction={setPassword}
+                />
                 <LoginButton 
                     handlePress={() => {
+                        logIn(email, password);
                         router.push('forum/posts')
                     }} 
                     type="Log in"

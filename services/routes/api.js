@@ -10,7 +10,7 @@ router.get('/test', function (req, res, next) {
 })
 
 router.post('/registeruser', [check('email').isEmail(), check('password').isLength({ min: 8 })], function (req, res, next) {
-    console.log(req)
+    console.log()
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         //res.redirect('./register');
@@ -46,9 +46,55 @@ router.post('/registeruser', [check('email').isEmail(), check('password').isLeng
             //     } else {
             //         res.json(result);
             //     }
-           //})
+            //})
         })
     }
+})
+
+router.post('/login', function (req, res, next) {
+    console.log(req.body)
+    let sqlquery = `SELECT hashedPassword FROM users WHERE email="${req.sanitize(req.body.email)}"`
+    console.log(sqlquery);
+    let user = {
+        email: req.body.email,
+        username: req.body.username,
+    }
+    // execute sql query
+    db.query(sqlquery, (err, result) => {
+        console.log(result)
+        if (err) {
+            next(err)
+        }
+        if (result.length > 0) {
+            var hashedPassword = result[0].hashedPassword;
+        } else {
+            res.json(["User account not found!"]);
+        }
+        console.log(hashedPassword);
+        bcrypt.compare(req.sanitize(req.body.password), hashedPassword, function (err, result) {
+            if (err) {
+                next(err)
+            } else if (result == true) {
+                let idQuery = `SELECT id, username FROM users WHERE email="${req.body.email}"`;
+                db.query(idQuery, (err, result1) => {
+                    if (err) {
+                        next(err)
+                    }
+                    else if (result1.length == 1) {
+                        user.id = result1[0].id;
+                        user.username = result1[0].username;
+                        res.json(user);
+                    }
+                    else {
+                        console.log("Wrong number of users found!")
+                    }
+                })
+            }
+            else {
+                res.send(["Login failed!"]);
+            }
+        })
+    })
 })
 
 module.exports = router

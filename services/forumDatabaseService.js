@@ -11,17 +11,9 @@ export async function registerUser(email, username, password) {
     console.log(username)
     console.log(password)
     try {
-        // console.log(baseUrl)
-        // const response = await fetch(
-        //     baseUrl + '/test'
-        // );
-        // const json = await response.json();
-        // console.log(json)
-        // // return json;
-
         await axios.post(`${baseUrl}/registeruser`, {
             email: email,
-            username: username,
+            username: username, 
             password: password
           }, {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -30,5 +22,20 @@ export async function registerUser(email, username, password) {
         });
     } catch (error) {
         console.log('Error registering user:', error);
+    }
+};
+
+export async function logIn(email, password) {
+    try {
+        await axios.post(`${baseUrl}/login`, {
+            email: email,
+            password: password
+          }, {
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+          }).then(response => {
+            console.log('user login successful:', response.data);
+        });
+    } catch (error) {
+        console.log('Error logging in:', error);
     }
 };
