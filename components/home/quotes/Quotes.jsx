@@ -6,12 +6,19 @@ import { getDay, getQuote, saveDay, saveQuote } from '../../../services/quotesSe
 import styles from './quotes.style'
 
 const Quotes = () => {
+  //https://stackoverflow.com/questions/75762581/stop-render-until-useeffect-is-done
+  const [loadingQuote, setLoadingQuote] = useState(true);
   const [quote, setQuote] = useState([{a: "This", q: "should not appear"}]);
 
   useEffect(() => {
     getQuote().then(quotey => setQuote(quotey));
     console.log(quote)
+    setLoadingQuote(false)
   }, []);
+
+  if (loadingQuote) {
+    return null
+  }
 
   return (
     <View style={styles.quoteContainer}>
