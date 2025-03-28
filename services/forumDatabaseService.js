@@ -4,6 +4,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { router } from "expo-router";
 
+import { Alert } from "react-native";
+
 const KEY = "SESSION";
 
 //const { manifest } = Constants;
@@ -64,7 +66,9 @@ export async function getSession() {
 
 export async function logout() {
     console.log("logging out")
+    Alert.alert("Log out", 'You have been logged out!');
     saveSession(null);
+    router.push("/")
 }
 
 

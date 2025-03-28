@@ -5,11 +5,11 @@ import { getDay, getQuote, saveDay, saveQuote } from '../../../services/quotesSe
 
 import styles from './quotes.style'
 
-const Quotes = ({ quotey }) => {
+const Quotes = () => {
   const [quote, setQuote] = useState([{a: "This", q: "should not appear"}]);
 
   useEffect(() => {
-    getQuote().then(quote => setQuote(quote));
+    getQuote().then(quotey => setQuote(quotey));
     console.log(quote)
   }, []);
 
