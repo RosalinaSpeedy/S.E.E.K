@@ -9,6 +9,8 @@ import { icons } from '../../../constants'
 import Quotes from '../quotes/Quotes'
 import { router } from 'expo-router'
 
+import { getSession, retrieveSession } from '../../../services/forumDatabaseService'
+
 const MainMenu = () => {
     return (
         <View style={{flex: 1}}>
@@ -27,7 +29,21 @@ const MainMenu = () => {
                     <RoundedSquareButton
                         iconUrl={icons.speechbubble}
                         title={"forum"}
-                        handlePress={() => router.push('/login/login')}
+                        handlePress={
+                            () => {
+                                let sessionGot;
+                                //console.log(getSession())
+                                // getSession().then(session => sessionGot = session)
+                                // console.log("SESSIONGOT")
+                                // console.log(sessionGot)
+                                // if (sessionGot) {
+                                //     router.push("/forum/posts");
+                                // } else {
+                                //     router.push("/login/login")
+                                // }
+                                retrieveSession();
+                            }
+                        }
                     />
                     <RoundedSquareButton
                         iconUrl={icons.book}

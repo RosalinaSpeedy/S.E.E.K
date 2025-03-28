@@ -68,7 +68,7 @@ router.post('/login', function (req, res, next) {
         if (result.length > 0) {
             var hashedPassword = result[0].hashedPassword;
         } else {
-            res.json(["User account not found!"]);
+            res.json(null);
         }
         console.log(hashedPassword);
         bcrypt.compare(req.sanitize(req.body.password), hashedPassword, function (err, result) {
@@ -91,7 +91,7 @@ router.post('/login', function (req, res, next) {
                 })
             }
             else {
-                res.send(["Login failed!"]);
+                res.json(null);
             }
         })
     })
