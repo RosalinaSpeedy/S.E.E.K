@@ -38,7 +38,7 @@ const Login = () => {
                         // let session = getSession();
                         // session = session._j
                         // console.log(session);
-                        logIn(email, password);
+                        logIn(email, password, false);
                         router.push('forum/posts')
                     }}
                     type="Log in"

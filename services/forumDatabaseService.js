@@ -32,7 +32,7 @@ export async function registerUser(email, username, password) {
     }
 };
 
-export async function logIn(email, password) {
+export async function logIn(email, password, check) {
     try {
         await axios.post(`${baseUrl}/login`, {
             email: email,
@@ -42,12 +42,16 @@ export async function logIn(email, password) {
         }).then(response => {
             //saveSession(response);
             console.log(response.data)
-            saveSession(response.data);
+            // JSON.parse(getSession()) == null ? saveSession(response.data) : console.log("checking session");
+            if (!check) {
+                saveSession(response.data)
+            }
             console.log('user login successful:', response.data);
-            return "success"
+            return response.data;
         });
     } catch (error) {
         console.log('Error logging in:', error);
+        return null;
     }
 };
 
@@ -91,8 +95,12 @@ export async function retrieveSession() {
             && typeof sessionGot.id !== 'undefined' ) {
             console.log("found session:")
             console.log(sessionGot);
-            router.push("/forum/posts");
-
+            if (logIn(sessionGot.email, sessionGot.password, true)) {
+                router.push("/forum/posts");
+            } else {
+                console.log("saved session login failed")
+                router.push("/login/login")
+            }
         } else {
             router.push("/login/login")
         }

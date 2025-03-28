@@ -58,6 +58,7 @@ router.post('/login', function (req, res, next) {
     let user = {
         email: req.body.email,
         username: req.body.username,
+        password: req.body.password
     }
     // execute sql query
     db.query(sqlquery, (err, result) => {
