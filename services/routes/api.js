@@ -9,7 +9,57 @@ router.get('/test', function (req, res, next) {
     res.json(["hello world"]);
 })
 
-router.post('/registeruser', [check('email').isEmail(), check('password').isLength({ min: 8 })], function (req, res, next) {
+router.get('/getposts', function (req, res, next) {
+    console.log("Fetch posts")
+    const sqlquery = `SELECT * FROM forumposts`
+    db.query(sqlquery, (err, result) => {
+        if (err) {
+            next(err)
+        }
+        else {
+            const sqlquery2 = `SELECT username FROM users WHERE id=${result.userid}`
+            db.query(sqlquery2, (err, result2) => {
+                if (err) {
+                    next(err)
+                }
+                else {
+                    result.username = result2.username;
+                    console.log(result);
+                    res.json(result)
+                }
+            })
+        }
+    })
+})
+
+router.post('/addpost', [check('text').not().isEmpty()], function (req, res, next) {
+    console.log("adding post")
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        //res.redirect('./register');
+        console.log(errors);
+        next(500);
+    }
+    else {
+        console.log(req.body)
+            let sqlquery = "INSERT INTO forumposts (title, body, created, edited, userId) VALUES (?,?,NOW(),NOW(),?)"
+            // execute sql query
+            let newrecord = [req.sanitize(req.body.title), req.sanitize(req.body.text), req.body.userId]
+            if (newrecord.includes("")) {
+                next("There was an error parsing your post input");
+            }
+            db.query(sqlquery, newrecord, (err, result) => {
+                if (err) {
+                    next(err)
+                }
+                else {
+                    res.json(result)
+                }
+            })
+    }
+})
+
+router.post('/registeruser', [check('email').isEmail(), check('username').not().isEmpty(), check('password').isLength({ min: 8 })], function (req, res, next) {
     console.log()
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

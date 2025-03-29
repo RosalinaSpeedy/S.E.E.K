@@ -45,6 +45,13 @@ export async function logIn(email, password, check) {
             // JSON.parse(getSession()) == null ? saveSession(response.data) : console.log("checking session");
             if (!check) {
                 saveSession(response.data)
+                if (response.data !== null) {
+                    console.log("Login data:");
+                    console.log(response.data)
+                    router.push('forum/posts');
+                } else {
+                    Alert.alert("Error logging in", "Issue with email/password!");
+                }
             }
             console.log('user login successful:', response.data);
             return response.data;
@@ -95,7 +102,7 @@ export async function retrieveSession() {
             && typeof sessionGot.id !== 'undefined' ) {
             console.log("found session:")
             console.log(sessionGot);
-            if (logIn(sessionGot.email, sessionGot.password, true)) {
+            if (logIn(sessionGot.email, sessionGot.password, true) !== null) {
                 router.push("/forum/posts");
             } else {
                 console.log("saved session login failed")
@@ -107,5 +114,40 @@ export async function retrieveSession() {
     } catch {
         console.log("Some error occurred")
         router.push("/login/login")
+    }
+}
+
+export async function fetchPosts() {
+    try {
+        await axios.get(`${baseUrl}/getposts`, {
+            
+        }, {
+            headers: {}
+        }).then(response => {
+            return response.data;
+        });
+    } catch (error) {
+        console.log('Error fetching posts:', error);
+    }
+};
+
+export async function addPost(title, text) {
+    try {
+        console.log("posting with session:")
+        const session = await getSession();
+        const sessionParsed = JSON.parse(session);
+        console.log("SESSION WHEN ADDING POST")
+        console.log(sessionParsed)
+        await axios.post(`${baseUrl}/addpost`, {
+            title: title,
+            text: text,
+            userId: sessionParsed.id
+        }, {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).then(response => {
+            console.log('post added:', response.data);
+        });
+    } catch (error) {
+        console.log('Error posting:', error);
     }
 }

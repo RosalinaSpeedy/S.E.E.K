@@ -1,4 +1,4 @@
-import { Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity } from "react-native";
+import { Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity, Alert } from "react-native";
 import { Stack, useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useState } from "react";
 
@@ -39,7 +39,6 @@ const Login = () => {
                         // session = session._j
                         // console.log(session);
                         logIn(email, password, false);
-                        router.push('forum/posts')
                     }}
                     type="Log in"
                 />

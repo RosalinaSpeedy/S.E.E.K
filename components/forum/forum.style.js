@@ -135,6 +135,13 @@ const styles = StyleSheet.create({
         color: '#F0A202',
         padding: '5%',
     },
+    titleInputBox: {
+        borderWidth: 2,
+        width: '96%',
+        borderRadius: 5,
+        alignSelf: 'center',
+        marginBottom: 2
+    }
 });
 
 export default styles;

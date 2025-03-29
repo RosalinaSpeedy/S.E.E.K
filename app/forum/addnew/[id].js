@@ -1,13 +1,15 @@
-import {Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity, TextInput, Alert} from "react-native";
-import {Stack, useRouter, useLocalSearchParams} from 'expo-router';
+import { Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity, TextInput, Alert } from "react-native";
+import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useState } from "react";
 
-import {MainFooter, MainHeader, NewPostTitle, NewPostInput, PostButton, CancelButton} from '../../../components';
-import {COLORS, icons, SIZES} from '../../../constants';
+import { MainFooter, MainHeader, NewPostTitle, NewPostInput, PostButton, CancelButton } from '../../../components';
+import { COLORS, icons, SIZES } from '../../../constants';
+import { addPost } from "../../../services/forumDatabaseService";
 
 
-const AddPost = ({postData}) => {
+const AddPost = ({ postData }) => {
     const [text, setText] = useState('');
+    const [title, setTitle] = useState('');
     const params = useLocalSearchParams();
     //console.log(params)
     const router = useRouter();
@@ -28,27 +30,33 @@ const AddPost = ({postData}) => {
             //await editEntry(id, text);
             //console.log("entry edited")
         } else {
-            //await saveEntry(text);
+            console.log(title)
+            console.log(text)
+            await addPost(title, text);
         }
         router.push('/forum/posts');
     }
 
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
-            <MainHeader/>
+            <MainHeader />
             <ScrollView>
                 <NewPostTitle
                     id={id}
                 />
                 <NewPostInput
                     id={id}
+                    titleVal={title}
                     textVal={text}
                     setTextFunction={setText}
+                    setTitleFunction={setTitle}
                 />
-                <PostButton 
+                <PostButton
                     handlePress={() => {
                         postButtonPress();
                     }}
+                    type="AddPost"
                 />
                 <CancelButton
                     handlePress={() => {
@@ -56,7 +64,7 @@ const AddPost = ({postData}) => {
                     }}
                 />
             </ScrollView>
-            <MainFooter/>
+            <MainFooter />
         </SafeAreaView>
     )
 }
