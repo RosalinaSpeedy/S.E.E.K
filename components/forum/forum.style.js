@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginBottom: '2%',
         padding: '3%',
-        justifyContent: 'center',
         flexDirection: 'row'
     },
     boldUsername: {
@@ -34,11 +33,15 @@ const styles = StyleSheet.create({
         
     },
     tripleDotButton: {
+        position: 'absolute',
+        right: 0,
+        top: 18,
         alignSelf: 'flex-end'
     },
     textContainer: {
-        alignSelf: 'flex-start',
-        marginRight: '45%'
+        alignSelf: 'left',
+        marginLeft: 10,
+        left: 0,
     },
     inlinePostTitleCard: {
         flexDirection: 'row',
@@ -141,7 +144,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         alignSelf: 'center',
         marginBottom: 2
-    }
+    },
 });
 
 export default styles;

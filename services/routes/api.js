@@ -11,23 +11,19 @@ router.get('/test', function (req, res, next) {
 
 router.get('/getposts', function (req, res, next) {
     console.log("Fetch posts")
-    const sqlquery = `SELECT * FROM forumposts`
+    const sqlquery = `SELECT forumposts.id, forumposts.title, forumposts.body, forumposts.created, forumposts.edited, forumPosts.userId,
+                      users.userName, users.email
+                      FROM forumposts
+                      INNER JOIN users ON forumposts.userId = users.id
+                      WHERE users.id=forumposts.userId`
     db.query(sqlquery, (err, result) => {
         if (err) {
             next(err)
         }
         else {
-            const sqlquery2 = `SELECT username FROM users WHERE id=${result.userid}`
-            db.query(sqlquery2, (err, result2) => {
-                if (err) {
-                    next(err)
-                }
-                else {
-                    result.username = result2.username;
-                    console.log(result);
-                    res.json(result)
-                }
-            })
+            console.log(result);
+            res.json(result)
+            
         }
     })
 })

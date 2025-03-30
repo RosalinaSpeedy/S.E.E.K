@@ -10,7 +10,7 @@ const KEY = "SESSION";
 
 //const { manifest } = Constants;
 //https://stackoverflow.com/questions/47417766/calling-locally-hosted-server-from-expo-app
-const baseUrl = `http://${Constants.expoConfig?.hostUri?.split(':').shift()?.concat(':8000/api')}`;
+export const baseUrl = `http://${Constants.expoConfig?.hostUri?.split(':').shift()?.concat(':8000/api')}`;
 
 //https://stackoverflow.com/questions/51143730/axios-posting-empty-request
 export async function registerUser(email, username, password) {
@@ -124,12 +124,42 @@ export async function fetchPosts() {
         }, {
             headers: {}
         }).then(response => {
+            console.log("GOT POSTS RAW:")
+            console.log(response.data);
+            console.log(response.data[0].body)
+            AsyncStorage.setItem(KEY + "_TMPPOSTS", JSON.stringify(response.data));
+            console.log("posts saved " + JSON.stringify(response.data))
             return response.data;
         });
     } catch (error) {
         console.log('Error fetching posts:', error);
     }
 };
+
+export async function getPosts() {
+    console.log("getting posts")
+    let postsGot = (await AsyncStorage.getItem(KEY + "_TMPPOSTS")) ?? '[]';
+    console.log("RAW posts:")
+    console.log(postsGot)
+    return postsGot;
+}
+
+export async function getTempPosts() {
+    getPosts().then(postsGot => {
+        console.log("POSTS GOT:")
+        console.log(postsGot);
+        if (typeof postsGot.length !== 'undefined' 
+            && postsGot.length > 0 ) {
+            console.log("found posts:")
+            console.log(postsGot);
+            console.log("success")
+            return postsGot;
+        } else {
+            console.log("fail")
+            //await getTempPosts();
+        }
+    });
+}
 
 export async function addPost(title, text) {
     try {
