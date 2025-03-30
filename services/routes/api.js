@@ -9,6 +9,25 @@ router.get('/test', function (req, res, next) {
     res.json(["hello world"]);
 })
 
+router.get('/getpost/:id', function (req, res, next) {
+    console.log("Fetch posts")
+    const postId = req.params.id;
+    const sqlquery = `SELECT forumposts.id, forumposts.title, forumposts.body, forumposts.created, forumposts.edited, forumPosts.userId,
+                      users.userName, users.email
+                      FROM forumposts
+                      INNER JOIN users ON forumposts.userId = users.id
+                      WHERE users.id=forumposts.userId AND forumposts.id=${postId}`
+    db.query(sqlquery, (err, result) => {
+        if (err) {
+            next(err)
+        }
+        else {
+            console.log(result);
+            res.json(result)
+        }
+    })
+})
+
 router.get('/getposts', function (req, res, next) {
     console.log("Fetch posts")
     const sqlquery = `SELECT forumposts.id, forumposts.title, forumposts.body, forumposts.created, forumposts.edited, forumPosts.userId,

@@ -9,6 +9,7 @@ import { icons } from '../../constants'
 import { fetchPosts, getTempPosts, baseUrl } from '../../services/forumDatabaseService'
 
 const PostEntry = ({ id, title, userName, comments }) => {
+    const router = useRouter();
     return (
         <TouchableOpacity onPress={() => router.push(`/forum/${id}`)}>
             <View style={styles.postCard}>

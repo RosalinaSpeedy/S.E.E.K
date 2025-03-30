@@ -4,11 +4,11 @@ import { Text, View, TouchableOpacity, Image } from 'react-native'
 import styles from './forum.style'
 import { icons } from '../../constants'
 
-const PostTitleCard = () => {
+const PostTitleCard = ({title}) => {
     return (
         <View style={styles.inlinePostTitleCard}>
             <Text style={styles.bigPostTitle}>
-                Post title
+                {title}
             </Text>
             <TouchableOpacity style={styles.tripleDotButton}>
                 <Image
