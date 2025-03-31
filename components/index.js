@@ -69,7 +69,8 @@ import CommentBox from "./forum/CommentBox";
 import CommentsSection from "./forum/CommentsSection";
 import NewPostInput from "./forum/NewPostInput"
 import NewPostTitle from "./forum/NewPostTitle";
-import PostButton from "./forum/PostButton"
+import PostButton from "./forum/PostButton";
+import CommentButton from "./forum/CommentButton";
 
 // job details screen
 import Company from "./jobdetails/company/Company";
@@ -145,5 +146,6 @@ export {
   NewPostInput,
   PostButton,
   NewPostTitle,
-  RegisterBoxes
+  RegisterBoxes,
+  CommentButton
 };

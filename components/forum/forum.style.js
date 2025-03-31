@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 
 import { FONT, SIZES, COLORS } from "../../constants";
+import { CommentButton } from "..";
 
 const styles = StyleSheet.create({
     forumTitle: {
@@ -75,11 +76,10 @@ const styles = StyleSheet.create({
     },
     commentsContainer: {
         padding: 5,
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
     commentContainer: {
         backgroundColor: '#ECE5E5',
-        width: '90%',
         marginRight: 5,
         marginBottom: 3,
         padding: 4
@@ -145,6 +145,26 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginBottom: 2
     },
+    commentButton: {
+        alignSelf: 'flex-end',
+        marginRight: 16,
+        backgroundColor: '#06D6A0',
+        width: 100,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        borderRadius: 40,
+        marginBottom: 10
+    },
+    commentButtonText: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 15,
+        alignSelf: 'center'
+    },
+    commentsFlatList: {
+        paddingBottom: 50
+    }
 });
 
 export default styles;

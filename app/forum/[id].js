@@ -1,10 +1,10 @@
-import {Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity} from "react-native";
-import {Stack, useRouter, useLocalSearchParams} from 'expo-router';
+import { Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity, Alert } from "react-native";
+import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useState } from "react";
 
-import {MainFooter, MainHeader, CommentBox, CommentsSection, PostTitleCard, PostSection} from '../../components';
-import {COLORS, icons, SIZES} from '../../constants';
-import { baseUrl } from "../../services/forumDatabaseService";
+import { MainFooter, MainHeader, CommentBox, CommentsSection, PostTitleCard, PostSection, CommentButton } from '../../components';
+import { COLORS, icons, SIZES } from '../../constants';
+import { baseUrl, addComment } from "../../services/forumDatabaseService";
 import axios from "axios";
 
 const Post = () => {
@@ -12,11 +12,26 @@ const Post = () => {
     const params = useLocalSearchParams();
     const [postId, setPostId] = useState(params.id);
     const [post, setPost] = useState({});
+    const [text, setText] = useState('');
+    
 
-    const fetchPost = async() => {
+    async function commentButtonPress() {
+        console.log("commenting...")
+        //console.log(text)
+        if (!text || text == '') {
+            Alert.alert("Enter some comment text!", 'Your comment is empty!');
+            return;
+        }
+        console.log(text)
+        await addComment(text, postId);
+        router.push(`/forum/${postId}`);
+    }
+
+
+    const fetchPost = async () => {
         try {
             await axios.get(`${baseUrl}/getpost/${postId}`, {
-                
+
             }, {
                 headers: {}
             }).then(response => {
@@ -26,6 +41,7 @@ const Post = () => {
                 // AsyncStorage.setItem(KEY + "_TMPPOSTS", JSON.stringify(response.data));
                 // console.log("posts saved " + JSON.stringify(response.data))
                 setPost(response.data[0]);
+                console.log(post.comments)
             });
         } catch (error) {
             console.log('Error fetching post:', error);
@@ -38,7 +54,7 @@ const Post = () => {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
-            <MainHeader/>
+            <MainHeader />
             <ScrollView>
                 <PostTitleCard
                     title={post.title}
@@ -47,10 +63,17 @@ const Post = () => {
                     userName={post.userName}
                     body={post.body}
                 />
-                <CommentsSection/>
-                <CommentBox/>
+                <CommentsSection
+                    comments={post.comments}
+                />
+                <CommentBox 
+                    changeTextFunction={setText}
+                />
+                <CommentButton
+                    handlePress={() => {commentButtonPress()}}
+                />
             </ScrollView>
-            <MainFooter/>
+            <MainFooter />
         </SafeAreaView>
     )
 }

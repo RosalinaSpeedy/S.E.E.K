@@ -181,3 +181,23 @@ export async function addPost(title, text) {
         console.log('Error posting:', error);
     }
 }
+
+export async function addComment(text, postId) {
+    try {
+        console.log("commenting with session:")
+        const session = await getSession();
+        const sessionParsed = JSON.parse(session);
+        console.log("SESSION WHEN ADDING COMMENT")
+        console.log(sessionParsed)
+        await axios.post(`${baseUrl}/addcomment/${postId}`, {
+            text: text,
+            userId: sessionParsed.id
+        }, {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).then(response => {
+            console.log('comment added:', response.data);
+        });
+    } catch (error) {
+        console.log('Error commenting:', error);
+    }
+}

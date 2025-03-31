@@ -13,7 +13,7 @@ router.get('/getpost/:id', function (req, res, next) {
     console.log("Fetch posts")
     const postId = req.params.id;
     const sqlquery = `SELECT forumposts.id, forumposts.title, forumposts.body, forumposts.created, forumposts.edited, forumPosts.userId,
-                      users.userName, users.email
+                      users.userName, users.email 
                       FROM forumposts
                       INNER JOIN users ON forumposts.userId = users.id
                       WHERE users.id=forumposts.userId AND forumposts.id=${postId}`
@@ -22,8 +22,24 @@ router.get('/getpost/:id', function (req, res, next) {
             next(err)
         }
         else {
-            console.log(result);
-            res.json(result)
+            console.log("posts got")
+            const commentQuery = `SELECT forumcomments.id, forumcomments.body, forumcomments.created, forumcomments.edited, forumcomments.postId, forumcomments.userId,
+                                  users.userName
+                                  FROM forumcomments 
+                                  INNER JOIN users ON forumcomments.userId = users.id
+                                  WHERE users.id=forumcomments.userId AND forumcomments.postId=${postId}`
+            db.query(commentQuery, (err, result2) => {
+                if (err) {
+                    next(err)
+                }
+                else {
+                    console.log(result);
+                    console.log(result2);
+                    result[0].comments = result2;
+                    console.log(result);
+                    res.json(result);
+                }
+            })
         }
     })
 })
@@ -42,7 +58,7 @@ router.get('/getposts', function (req, res, next) {
         else {
             console.log(result);
             res.json(result)
-            
+
         }
     })
 })
@@ -57,20 +73,48 @@ router.post('/addpost', [check('text').not().isEmpty()], function (req, res, nex
     }
     else {
         console.log(req.body)
-            let sqlquery = "INSERT INTO forumposts (title, body, created, edited, userId) VALUES (?,?,NOW(),NOW(),?)"
-            // execute sql query
-            let newrecord = [req.sanitize(req.body.title), req.sanitize(req.body.text), req.body.userId]
-            if (newrecord.includes("")) {
-                next("There was an error parsing your post input");
+        let sqlquery = "INSERT INTO forumposts (title, body, created, edited, userId) VALUES (?,?,NOW(),NOW(),?)"
+        // execute sql query
+        let newrecord = [req.sanitize(req.body.title), req.sanitize(req.body.text), req.body.userId]
+        if (newrecord.includes("")) {
+            next("There was an error parsing your post input");
+        }
+        db.query(sqlquery, newrecord, (err, result) => {
+            if (err) {
+                next(err)
             }
-            db.query(sqlquery, newrecord, (err, result) => {
-                if (err) {
-                    next(err)
-                }
-                else {
-                    res.json(result)
-                }
-            })
+            else {
+                res.json(result)
+            }
+        })
+    }
+})
+
+router.post('/addcomment/:id', [check('text').not().isEmpty()], function (req, res, next) {
+    const postId = req.params.id;
+    console.log("adding comment to post " + postId)
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        //res.redirect('./register');
+        console.log(errors);
+        next(500);
+    }
+    else {
+        console.log(req.body)
+        let sqlquery = "INSERT INTO forumcomments (postId, body, created, edited, userId) VALUES (?,?,NOW(),NOW(),?)"
+        // execute sql query
+        let newrecord = [postId, req.sanitize(req.body.text), req.body.userId]
+        if (newrecord.includes("")) {
+            next("There was an error parsing your post input");
+        }
+        db.query(sqlquery, newrecord, (err, result) => {
+            if (err) {
+                next(err)
+            }
+            else {
+                res.json(result)
+            }
+        })
     }
 })
 
