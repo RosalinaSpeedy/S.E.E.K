@@ -31,7 +31,7 @@ const TripleDotMenu = ({ postId, userId, dotMenuShown, setDotMenuShown, exited, 
     }
 }
 
-const PostEntry = ({ id, title, userName, comments, exited, setExited, menuShown, setMenuShown }) => {
+const PostEntry = ({ id, title, userName, commentCount, exited, setExited, menuShown, setMenuShown }) => {
     const router = useRouter();
 
     const [dotMenuShown, setDotMenuShown] = useState(false);
@@ -45,7 +45,7 @@ const PostEntry = ({ id, title, userName, comments, exited, setExited, menuShown
                             <Text style={styles.postCardTitle}>{title}</Text>
                         </Text>
                         <Text style={styles.commentCount}>
-                            {comments.length + " comments"}
+                            {commentCount + " comments"}
                         </Text>
                     </View>
                     <TouchableOpacity style={styles.tripleDotButton} onPress={() => {
@@ -94,6 +94,8 @@ const Posts = ({ exited, setExited }) => {
                 // AsyncStorage.setItem(KEY + "_TMPPOSTS", JSON.stringify(response.data));
                 // console.log("posts saved " + JSON.stringify(response.data))
                 setPosts(response.data);
+                console.log("POSTYYY")
+                console.log(posts)
                 setLoadingPosts(false);
             });
         } catch (error) {
@@ -133,7 +135,7 @@ const Posts = ({ exited, setExited }) => {
                     renderItem={({ item }) => <PostEntry
                         title={item.title}
                         userName={item.userName}
-                        comments={["big", "bada", "bing", "bada", "boom"]}
+                        commentCount={item.commentCount}
                         id={item.id}
                         exited={exited}
                         setExited={setExited}

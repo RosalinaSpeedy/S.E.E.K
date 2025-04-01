@@ -44,18 +44,38 @@ router.get('/getpost/:id', function (req, res, next) {
     })
 })
 
+//https://stackoverflow.com/questions/2802713/changing-a-sum-returned-null-to-zero
+//https://stackoverflow.com/questions/73990118/sql-count-occurrences-of-an-id-from-another-table-in-multiple-rows
 router.get('/getposts', function (req, res, next) {
+    const postId = req.body.postId;
     console.log("Fetch posts")
     const sqlquery = `SELECT forumposts.id, forumposts.title, forumposts.body, forumposts.created, forumposts.edited, forumPosts.userId,
-                      users.userName, users.email
+                      users.userName, users.email, SUM(IFNULL(forumposts.id = forumcomments.postId, 0)) as commentCount
                       FROM forumposts
-                      INNER JOIN users ON forumposts.userId = users.id
-                      WHERE users.id=forumposts.userId`
+                      LEFT OUTER JOIN users ON forumposts.userId = users.id
+                      LEFT OUTER JOIN forumcomments on forumposts.id = forumcomments.postId
+                      WHERE users.id=forumposts.userId
+                      GROUP BY forumposts.id`
     db.query(sqlquery, (err, result) => {
         if (err) {
             next(err)
         }
         else {
+            // const commentQuery = `SELECT forumcomments.id
+            //                       FROM forumcomments 
+            //                       WHERE forumcomments.postId=${postId}`
+            // db.query(commentQuery, (err, result2) => {
+            //     if (err) {
+            //         next(err)
+            //     }
+            //     else {
+            //         console.log(result);
+            //         console.log(result2);
+            //         result[0].comments = result2;
+            //         console.log(result);
+            //         res.json(result);
+            //     }
+            // })
             console.log(result);
             res.json(result)
 
