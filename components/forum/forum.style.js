@@ -164,6 +164,29 @@ const styles = StyleSheet.create({
     },
     commentsFlatList: {
         paddingBottom: 50
+    },
+    tripleDotMenuContainer: {
+        position: 'absolute',
+        right: 30,
+        top: 8,
+        backgroundColor: 'white',
+        width: 80,
+        alignItems: 'center',
+        zIndex: 6
+    },
+    tripleDotMenuOption: {
+        width: '100%',
+    },
+    optionButton: {
+        width: '100%',
+    },
+    fullInvisible: {
+        position: 'static',
+        width: '100%',
+        height: '100%',
+        left: 0,
+        top: 0,
+        backgroundColor: 'red'
     }
 });
 
