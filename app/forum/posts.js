@@ -10,6 +10,10 @@ const ForumHome = () => {
     const router = useRouter();
     const [exited, setExited] = useState('false')
 
+    useEffect(() => {
+       setExited(true); 
+    }, []);
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
             <TouchableWithoutFeedback style={{
@@ -18,23 +22,26 @@ const ForumHome = () => {
                 zIndex: 99,
             }} onPress={() => { setExited(true) }}>
                 <View>
-                <MainHeader />
-                <ScrollView>
-                    <ForumTitle />
-                    <Posts 
-                        exited={exited}
-                        setExited={setExited}
-                    />
+                    <MainHeader />
+                    <ScrollView style={{ height: '95%' }}>
+                        <ForumTitle />
+                        <Posts
+                            exited={exited}
+                            setExited={setExited}
+                        />
 
-                </ScrollView>
-                <MainFooter />
-                <AddButton
-                    handlePress={() => {
-                        router.push(`/forum/addnew/blank`);
-                    }}
-                />
+                    </ScrollView>
+                    <AddButton
+                        handlePress={() => {
+                            router.push(`/forum/addnew/blank`);
+                        }}
+                    />
+                    <MainFooter />
                 </View>
+
             </TouchableWithoutFeedback>
+
+
         </SafeAreaView>
     )
 }
