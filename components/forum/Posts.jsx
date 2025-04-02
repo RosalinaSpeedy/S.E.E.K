@@ -1,40 +1,80 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { Text, TouchableOpacity, View, Image, FlatList, TouchableWithoutFeedback, Dimensions } from 'react-native'
+import { Text, TouchableOpacity, View, Image, FlatList, TouchableWithoutFeedback, Dimensions, Alert } from 'react-native'
 import { useFocusEffect, useRouter } from 'expo-router'
 import axios from "axios";
 
 import styles from './forum.style'
 import AddButton from '../journal/AddButton'
 import { icons } from '../../constants'
-import { fetchPosts, getTempPosts, baseUrl } from '../../services/forumDatabaseService'
+import { fetchPosts, getTempPosts, baseUrl, getSession } from '../../services/forumDatabaseService'
 
-const TripleDotMenu = ({ postId, userId, dotMenuShown, setDotMenuShown, exited, setExited, menuShown, setMenuShown }) => {
+const TripleDotMenu = ({ postId, userId, dotMenuShown, setDotMenuShown, exited, setExited, menuShown, setMenuShown, postUserId }) => {
+    const router = useRouter();
+    const deletePost = async () => {
+        try {
+            await axios.post(`${baseUrl}/deletepost/${postId}`, {
+
+            }, {
+                headers: {}
+            }).then(response => {
+                console.log("deleted posts:")
+                console.log(response.data);
+                router.push('/forum/posts')
+                // AsyncStorage.setItem(KEY + "_TMPPOSTS", JSON.stringify(response.data));
+                // console.log("posts saved " + JSON.stringify(response.data))
+            });
+        } catch (error) {
+            console.log('Error deleting posts:', error);
+        }
+    }
+    const editPost = () => {
+
+    }
+    const createTwoButtonAlert = () => {
+        Alert.alert('Deleting post', `You are about to delete this post: ${postId}\nYou sure?`, [
+            {
+                text: `Cancel`,
+                onPress: () => { console.log('post delete cancelled') },
+                style: 'cancel',
+            },
+            { text: `Delete`, onPress: () => { deletePost() } },
+        ]);
+    }
     if (dotMenuShown) {
         if (exited) {
             console.log("exiting")
             setDotMenuShown(false);
             setExited(false);
-            setMenuShown(false);
+            //setMenuShown(false);
             return null;
         }
         return (
             <View style={styles.tripleDotMenuContainer}>
-                {postId == userId ? <View style={{ width: '100%' }}>
-                    <TouchableOpacity style={styles.tripleDotMenuOption}><View style={styles.optionButton}><Text>Edit</Text></View></TouchableOpacity>
-                    <TouchableOpacity style={styles.tripleDotMenuOption}><View style={styles.optionButton}><Text>Delete</Text></View></TouchableOpacity>
-                </View> : <TouchableOpacity style={styles.tripleDotMenuOption}><View style={styles.optionButton}><Text>Delete</Text></View></TouchableOpacity>}
+                {postUserId == userId ? <View style={{ width: '100%' }}>
+                    <TouchableOpacity style={styles.tripleDotMenuOption} ><View style={styles.optionButton}><Text>Edit</Text></View></TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.tripleDotMenuOption}
+                        onPress={createTwoButtonAlert()}
+
+                    ><Text>Delete</Text></TouchableOpacity>
+                </View> : <TouchableOpacity style={styles.tripleDotMenuOption}><View style={styles.optionButton}><Text>Report</Text></View></TouchableOpacity>}
             </View>
         )
 
     } else {
         return null;
     }
+    
 }
 
-const PostEntry = ({ id, title, userName, commentCount, exited, setExited, menuShown, setMenuShown }) => {
+const PostEntry = ({ id, title, userName, commentCount, exited, setExited, menuShown, setMenuShown, userId, postUserId }) => {
     const router = useRouter();
 
     const [dotMenuShown, setDotMenuShown] = useState(false);
+
+    console.log("USER ID")
+    console.log(userId)
+
     return (
         <View>
             <TouchableOpacity onPress={() => router.push(`/forum/${id}`)}>
@@ -50,7 +90,7 @@ const PostEntry = ({ id, title, userName, commentCount, exited, setExited, menuS
                     </View>
                     <TouchableOpacity style={styles.tripleDotButton} onPress={() => {
                         setDotMenuShown(!dotMenuShown)
-                        //setExited(false)
+                        setExited(false)
                         //setDotMenuShown(!dotMenuShown) 
 
                     }}>
@@ -61,13 +101,14 @@ const PostEntry = ({ id, title, userName, commentCount, exited, setExited, menuS
                     </TouchableOpacity>
                     <TripleDotMenu
                         postId={id}
-                        userId={id}
+                        userId={userId}
                         dotMenuShown={dotMenuShown}
                         setDotMenuShown={setDotMenuShown}
                         exited={exited}
                         setExited={setExited}
                         menuShown={menuShown}
                         setMenuShown={setMenuShown}
+                        postUserId={postUserId}
                     />
                 </View>
             </TouchableOpacity>
@@ -80,6 +121,15 @@ const Posts = ({ exited, setExited }) => {
     const [posts, setPosts] = useState([]);
     const [loadingPosts, setLoadingPosts] = useState(true);
     const [menuShown, setMenuShown] = useState(false);
+
+    const [userId, setUserId] = useState(-1);
+
+    useEffect(() => {
+        console.log("aaa")
+        getSession().then(session => setUserId(JSON.parse(session).id));
+        fetchPosts();
+        //console.log(entries)
+    }, [userId]);
 
     const fetchPosts = async () => {
         try {
@@ -102,10 +152,6 @@ const Posts = ({ exited, setExited }) => {
             console.log('Error fetching posts:', error);
         }
     };
-
-    useEffect(() => {
-        fetchPosts()
-    }, [])
 
     // useFocusEffect(() => {
     //     getTempPosts().then(allPosts => setPosts(allPosts)).then(
@@ -141,6 +187,8 @@ const Posts = ({ exited, setExited }) => {
                         setExited={setExited}
                         menuShown={menuShown}
                         setMenuShown={setMenuShown}
+                        userId={userId}
+                        postUserId={item.userId}
                     />}
                     keyExtractor={post => post.id}
                     ListEmptyComponent={() => (

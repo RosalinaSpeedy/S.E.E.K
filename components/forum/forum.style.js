@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     },
     tripleDotMenuContainer: {
         position: 'absolute',
-        right: 30,
+        right: 50,
         top: 8,
         backgroundColor: 'white',
         width: 80,

@@ -9,6 +9,48 @@ router.get('/test', function (req, res, next) {
     res.json(["hello world"]);
 })
 
+//https://stackoverflow.com/questions/1233451/delete-from-two-tables-in-one-query
+router.post('/deletepost/:id', function (req, res, next) {
+    console.log("Delete posts")
+    const postId = req.params.id;
+    const sqlquery = `DELETE forumcomments.* FROM forumcomments INNER JOIN forumposts 
+                      ON forumcomments.postId = forumposts.id  
+                      WHERE forumcomments.postId=${postId}`
+    db.query(sqlquery, (err, result) => {
+        if (err) {
+            next(err)
+        }
+        else {
+            const postQuery = `DELETE FROM forumposts WHERE id=${postId}`
+            db.query(postQuery, (err, result1) => {
+                if (err) {
+                    next(err)
+                }
+                else {
+                    console.log("posts deleted")
+                    res.json(result1)
+                    // const fetch = `SELECT forumposts.id, forumposts.title, forumposts.body, forumposts.created, forumposts.edited, forumPosts.userId,
+                    //                   users.userName, users.email, SUM(IFNULL(forumposts.id = forumcomments.postId, 0)) as commentCount
+                    //                   FROM forumposts
+                    //                   LEFT OUTER JOIN users ON forumposts.userId = users.id
+                    //                   LEFT OUTER JOIN forumcomments on forumposts.id = forumcomments.postId
+                    //                   WHERE users.id=forumposts.userId
+                    //                   GROUP BY forumposts.id`
+                    // db.query(fetch, (err, result2) => {
+                    //     if (err) {
+                    //         next(err)
+                    //     }
+                    //     else {
+                    //         console.log(result2);
+                    //         res.json(result2);
+                    //     }
+                    // })
+                }
+            })
+        }
+    })
+})
+
 router.get('/getpost/:id', function (req, res, next) {
     console.log("Fetch posts")
     const postId = req.params.id;
@@ -37,7 +79,7 @@ router.get('/getpost/:id', function (req, res, next) {
                     console.log(result2);
                     result[0].comments = result2;
                     console.log(result);
-                    res.json(result);
+                    res.redirect('/getposts');
                 }
             })
         }
