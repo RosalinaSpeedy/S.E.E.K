@@ -37,3 +37,13 @@ CREATE TABLE `forumcomments` (
   CONSTRAINT `forumcomments_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `reported` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userId` int DEFAULT NULL,
+  `postId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `postId` (`postId`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `reported_ibfk_1` FOREIGN KEY (`postId`) REFERENCES `forumposts` (`id`),
+  CONSTRAINT `reported_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
