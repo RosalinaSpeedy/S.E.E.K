@@ -28,7 +28,7 @@ const TripleDotMenu = ({ postId, userId, dotMenuShown, setDotMenuShown, exited, 
         }
     }
     const editPost = () => {
-
+        router.push(`/forum/addnew/${postId}`)
     }
     const createTwoButtonAlert = () => {
         Alert.alert('Deleting post', `You are about to delete this post: ${postId}\nYou sure?`, [
@@ -51,7 +51,10 @@ const TripleDotMenu = ({ postId, userId, dotMenuShown, setDotMenuShown, exited, 
         return (
             <View style={styles.tripleDotMenuContainer}>
                 {postUserId == userId ? <View style={{ width: '100%' }}>
-                    <TouchableOpacity style={styles.tripleDotMenuOption} ><View style={styles.optionButton}><Text>Edit</Text></View></TouchableOpacity>
+                    <TouchableOpacity style={styles.tripleDotMenuOption} 
+                        onPress={editPost()}
+                    
+                    ><View style={styles.optionButton}><Text>Edit</Text></View></TouchableOpacity>
                     <TouchableOpacity
                         style={styles.tripleDotMenuOption}
                         onPress={createTwoButtonAlert()}

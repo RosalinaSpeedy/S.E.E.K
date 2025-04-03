@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { MainFooter, MainHeader, NewPostTitle, NewPostInput, PostButton, CancelButton } from '../../../components';
 import { COLORS, icons, SIZES } from '../../../constants';
-import { addPost } from "../../../services/forumDatabaseService";
+import { addPost, editPost } from "../../../services/forumDatabaseService";
 
 
 const AddPost = ({ postData }) => {
@@ -26,9 +26,9 @@ const AddPost = ({ postData }) => {
             return;
         }
         if (id) {
-            //console.log("id found")
-            //await editEntry(id, text);
-            //console.log("entry edited")
+            console.log("id found")
+            await editPost(id, title, text);
+            console.log("entry edited")
         } else {
             console.log(title)
             console.log(text)

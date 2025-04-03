@@ -79,7 +79,8 @@ router.get('/getpost/:id', function (req, res, next) {
                     console.log(result2);
                     result[0].comments = result2;
                     console.log(result);
-                    res.redirect('/getposts');
+                    res.json(result)
+                    //res.redirect('/api/getposts');
                 }
             })
         }
@@ -138,6 +139,34 @@ router.post('/addpost', [check('text').not().isEmpty()], function (req, res, nex
         let sqlquery = "INSERT INTO forumposts (title, body, created, edited, userId) VALUES (?,?,NOW(),NOW(),?)"
         // execute sql query
         let newrecord = [req.sanitize(req.body.title), req.sanitize(req.body.text), req.body.userId]
+        if (newrecord.includes("")) {
+            next("There was an error parsing your post input");
+        }
+        db.query(sqlquery, newrecord, (err, result) => {
+            if (err) {
+                next(err)
+            }
+            else {
+                res.json(result)
+            }
+        })
+    }
+})
+
+router.post('/editpost/:id', [check('text').not().isEmpty()], function (req, res, next) {
+    const postId = req.params.id;
+    console.log("editing post")
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        //res.redirect('./register');
+        console.log(errors);
+        next(500);
+    }
+    else {
+        console.log(req.body)
+        let sqlquery = `UPDATE forumposts SET title = ?, body = ?, edited = NOW() WHERE id=${postId}`
+        // execute sql query
+        let newrecord = [req.sanitize(req.body.title), req.sanitize(req.body.text)]
         if (newrecord.includes("")) {
             next("There was an error parsing your post input");
         }

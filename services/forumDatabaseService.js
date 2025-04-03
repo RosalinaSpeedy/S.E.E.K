@@ -182,6 +182,26 @@ export async function addPost(title, text) {
     }
 }
 
+export async function editPost(id, title, text) {
+    try {
+        console.log("editing with session:")
+        const session = await getSession();
+        const sessionParsed = JSON.parse(session);
+        console.log("SESSION WHEN editing POST")
+        console.log(sessionParsed)
+        await axios.post(`${baseUrl}/editpost/${id}`, {
+            title: title,
+            text: text,
+        }, {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).then(response => {
+            console.log('post edited:', response.data);
+        });
+    } catch (error) {
+        console.log('Error posting:', error);
+    }
+}
+
 export async function addComment(text, postId) {
     try {
         console.log("commenting with session:")
