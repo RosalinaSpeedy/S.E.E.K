@@ -225,9 +225,9 @@ router.post('/registeruser', [check('email').isEmail(), check('username').not().
             // store hashed password
             console.log("adding user");
             // saving data in database
-            let sqlquery = "INSERT INTO users (userName, email, hashedPassword) VALUES (?,?,?)"
+            let sqlquery = "INSERT INTO users (userName, email, hashedPassword, clearance) VALUES (?,?,?,?)"
             // execute sql query
-            let newrecord = [req.sanitize(req.body.username), req.sanitize(req.body.email), hashedPassword]
+            let newrecord = [req.sanitize(req.body.username), req.sanitize(req.body.email), hashedPassword, "user"]
             if (newrecord.includes("")) {
                 next("There was an error parsing your selected username/password");
             }
