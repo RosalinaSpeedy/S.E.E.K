@@ -52,12 +52,12 @@ const TripleDotMenu = ({ postId, userId, dotMenuShown, setDotMenuShown, exited, 
             <View style={styles.tripleDotMenuContainer}>
                 {postUserId == userId ? <View style={{ width: '100%' }}>
                     <TouchableOpacity style={styles.tripleDotMenuOption} 
-                        onPress={editPost()}
+                        onPress={() => {editPost()}}
                     
                     ><View style={styles.optionButton}><Text>Edit</Text></View></TouchableOpacity>
                     <TouchableOpacity
                         style={styles.tripleDotMenuOption}
-                        onPress={createTwoButtonAlert()}
+                        onPress={() => {createTwoButtonAlert()}}
 
                     ><Text>Delete</Text></TouchableOpacity>
                 </View> : <TouchableOpacity style={styles.tripleDotMenuOption}><View style={styles.optionButton}><Text>Report</Text></View></TouchableOpacity>}
