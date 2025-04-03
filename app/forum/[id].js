@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { MainFooter, MainHeader, CommentBox, CommentsSection, PostTitleCard, PostSection, CommentButton } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
-import { baseUrl, addComment } from "../../services/forumDatabaseService";
+import { baseUrl, addComment, getSession } from "../../services/forumDatabaseService";
 import axios from "axios";
 
 const Post = () => {
@@ -13,6 +13,7 @@ const Post = () => {
     const [postId, setPostId] = useState(params.id);
     const [post, setPost] = useState({});
     const [text, setText] = useState('');
+    const [userId, setUserId] = useState(-1);
     
 
     async function commentButtonPress() {
@@ -50,7 +51,8 @@ const Post = () => {
 
     useEffect(() => {
         fetchPost()
-    }, [])
+        getSession().then(session => setUserId(JSON.parse(session).id));
+    }, [userId])
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -58,6 +60,9 @@ const Post = () => {
             <ScrollView>
                 <PostTitleCard
                     title={post.title}
+                    id={postId}
+                    userId={userId}
+                    postUserId={post.userId}
                 />
                 <PostSection
                     userName={post.userName}

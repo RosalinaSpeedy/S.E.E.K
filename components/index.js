@@ -71,6 +71,7 @@ import NewPostInput from "./forum/NewPostInput"
 import NewPostTitle from "./forum/NewPostTitle";
 import PostButton from "./forum/PostButton";
 import CommentButton from "./forum/CommentButton";
+import TripleDotMenu from "./forum/TripleDotMenu";
 
 // job details screen
 import Company from "./jobdetails/company/Company";
@@ -147,5 +148,6 @@ export {
   PostButton,
   NewPostTitle,
   RegisterBoxes,
-  CommentButton
+  CommentButton,
+  TripleDotMenu
 };

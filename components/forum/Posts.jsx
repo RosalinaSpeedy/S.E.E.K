@@ -7,70 +7,9 @@ import styles from './forum.style'
 import AddButton from '../journal/AddButton'
 import { icons } from '../../constants'
 import { fetchPosts, getTempPosts, baseUrl, getSession } from '../../services/forumDatabaseService'
+import { TripleDotMenu } from '../../components'
 
-const TripleDotMenu = ({ postId, userId, dotMenuShown, setDotMenuShown, exited, setExited, menuShown, setMenuShown, postUserId }) => {
-    const router = useRouter();
-    const deletePost = async () => {
-        try {
-            await axios.post(`${baseUrl}/deletepost/${postId}`, {
-
-            }, {
-                headers: {}
-            }).then(response => {
-                console.log("deleted posts:")
-                console.log(response.data);
-                router.push('/forum/posts')
-                // AsyncStorage.setItem(KEY + "_TMPPOSTS", JSON.stringify(response.data));
-                // console.log("posts saved " + JSON.stringify(response.data))
-            });
-        } catch (error) {
-            console.log('Error deleting posts:', error);
-        }
-    }
-    const editPost = () => {
-        router.push(`/forum/addnew/${postId}`)
-    }
-    const createTwoButtonAlert = () => {
-        Alert.alert('Deleting post', `You are about to delete this post: ${postId}\nYou sure?`, [
-            {
-                text: `Cancel`,
-                onPress: () => { console.log('post delete cancelled') },
-                style: 'cancel',
-            },
-            { text: `Delete`, onPress: () => { deletePost() } },
-        ]);
-    }
-    if (dotMenuShown) {
-        if (exited) {
-            console.log("exiting")
-            setDotMenuShown(false);
-            setExited(false);
-            //setMenuShown(false);
-            return null;
-        }
-        return (
-            <View style={styles.tripleDotMenuContainer}>
-                {postUserId == userId ? <View style={{ width: '100%' }}>
-                    <TouchableOpacity style={styles.tripleDotMenuOption} 
-                        onPress={() => {editPost()}}
-                    
-                    ><View style={styles.optionButton}><Text>Edit</Text></View></TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.tripleDotMenuOption}
-                        onPress={() => {createTwoButtonAlert()}}
-
-                    ><Text>Delete</Text></TouchableOpacity>
-                </View> : <TouchableOpacity style={styles.tripleDotMenuOption}><View style={styles.optionButton}><Text>Report</Text></View></TouchableOpacity>}
-            </View>
-        )
-
-    } else {
-        return null;
-    }
-    
-}
-
-const PostEntry = ({ id, title, userName, commentCount, exited, setExited, menuShown, setMenuShown, userId, postUserId }) => {
+const PostEntry = ({ id, title, userName, commentCount, exited, setExited, userId, postUserId }) => {
     const router = useRouter();
 
     const [dotMenuShown, setDotMenuShown] = useState(false);
@@ -109,8 +48,6 @@ const PostEntry = ({ id, title, userName, commentCount, exited, setExited, menuS
                         setDotMenuShown={setDotMenuShown}
                         exited={exited}
                         setExited={setExited}
-                        menuShown={menuShown}
-                        setMenuShown={setMenuShown}
                         postUserId={postUserId}
                     />
                 </View>
@@ -123,7 +60,6 @@ const Posts = ({ exited, setExited }) => {
     const router = useRouter();
     const [posts, setPosts] = useState([]);
     const [loadingPosts, setLoadingPosts] = useState(true);
-    const [menuShown, setMenuShown] = useState(false);
 
     const [userId, setUserId] = useState(-1);
 
@@ -188,8 +124,6 @@ const Posts = ({ exited, setExited }) => {
                         id={item.id}
                         exited={exited}
                         setExited={setExited}
-                        menuShown={menuShown}
-                        setMenuShown={setMenuShown}
                         userId={userId}
                         postUserId={item.userId}
                     />}
