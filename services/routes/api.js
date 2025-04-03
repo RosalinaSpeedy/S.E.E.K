@@ -298,4 +298,24 @@ router.post('/login', function (req, res, next) {
     })
 })
 
+//https://stackoverflow.com/questions/1361340/how-can-i-do-insert-if-not-exists-in-mysql
+//https://www.tutorialspoint.com/mysql/mysql-handling-duplicates.htm
+//https://stackoverflow.com/questions/2219786/best-way-to-avoid-duplicate-entry-into-mysql-database
+router.post('/reportpost/:id', function (req, res, next) {
+    const postId = req.params.id;
+    console.log("reporting post " + postId)
+    console.log(req.body)
+    let sqlquery = "INSERT IGNORE INTO reported (userId, postId) VALUES (?,?)"
+    // execute sql query
+    let newrecord = [req.body.userId, postId]
+    db.query(sqlquery, newrecord, (err, result) => {
+        if (err) {
+            next(err)
+        }
+        else {
+            res.json(result)
+        }
+    })
+})
+
 module.exports = router

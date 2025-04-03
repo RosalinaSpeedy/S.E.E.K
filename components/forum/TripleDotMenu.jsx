@@ -10,6 +10,19 @@ import { fetchPosts, getTempPosts, baseUrl, getSession } from '../../services/fo
 
 const TripleDotMenu = ({ postId, userId, dotMenuShown, setDotMenuShown, exited, setExited, postUserId }) => {
     const router = useRouter();
+    const report = async () => {
+        try {
+            await axios.post(`${baseUrl}/reportpost/${postId}`, {
+                userId: userId
+            }, {
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).then(response => {
+                console.log('post reported:', response.data);
+            });
+        } catch (error) {
+            console.log('Error reporting:', error);
+        }
+    }
     const deletePost = async () => {
         try {
             await axios.post(`${baseUrl}/deletepost/${postId}`, {
@@ -40,6 +53,16 @@ const TripleDotMenu = ({ postId, userId, dotMenuShown, setDotMenuShown, exited, 
             { text: `Delete`, onPress: () => { deletePost() } },
         ]);
     }
+    const createReportAlert = () => {
+        Alert.alert('Reported', `You have reported this post - thanks, we will look into it: ${postId}`, [
+            {
+                text: `OK`,
+                onPress: () => { console.log('reported post') },
+            }
+        ]);
+        report();
+        setExited(true);
+    }
     if (dotMenuShown) {
         if (exited) {
             console.log("exiting")
@@ -60,7 +83,10 @@ const TripleDotMenu = ({ postId, userId, dotMenuShown, setDotMenuShown, exited, 
                         onPress={() => {createTwoButtonAlert()}}
 
                     ><Text>Delete</Text></TouchableOpacity>
-                </View> : <TouchableOpacity style={styles.tripleDotMenuOption}><View style={styles.optionButton}><Text>Report</Text></View></TouchableOpacity>}
+                </View> : <TouchableOpacity
+                    style={styles.tripleDotMenuOption}
+                    onPress={() => {createReportAlert()}}
+                ><View style={styles.optionButton}><Text>Report</Text></View></TouchableOpacity>}
             </View>
         )
 
