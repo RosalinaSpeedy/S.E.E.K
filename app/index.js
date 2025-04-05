@@ -6,6 +6,9 @@ import { COLORS, icons, images, SIZES } from "../constants";
 import { MainMenu, MainFooter, MainHeader, AdminMainMenu } from "../components";
 import { getSession } from '../services/forumDatabaseService';
 
+import axios from 'axios';
+axios.defaults.headers.common['REACT_APP_SEEK_FORUM_API_KEY'] = process.env.REACT_APP_SEEK_FORUM_API_KEY;
+
 const homeScreen = () => {
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState("");

@@ -1,16 +1,30 @@
+const dotenv = require("dotenv")
+dotenv.config({ path: `../../.env` })
+
 const { check, validationResult } = require('express-validator');
 const express = require("express")
 const router = express.Router()
 
 const bcrypt = require('bcrypt')
 
-router.get('/test', function (req, res, next) {
+const checkKey = (req, res, next) => {
+    console.log(req.headers);
+    console.log(API_KEY);
+    if (API_KEY === req.headers.react_app_seek_forum_api_key) {
+        next();
+        return;
+    }
+    res.sendStatus(401);
+}
+
+router.get('/test', checkKey, function (req, res, next) {
+    console.log(JSON.stringify(req.headers))
     console.log("Fetch recieved")
     res.json(["hello world"]);
 })
 
 //https://stackoverflow.com/questions/1233451/delete-from-two-tables-in-one-query
-router.post('/deletepost/:id', function (req, res, next) {
+router.post('/deletepost/:id', checkKey, function (req, res, next) {
     console.log("Delete posts")
     const postId = req.params.id;
     const sqlquery = `DELETE forumcomments.* FROM forumcomments INNER JOIN forumposts 
@@ -35,7 +49,7 @@ router.post('/deletepost/:id', function (req, res, next) {
     })
 })
 
-router.get('/getpost/:id', function (req, res, next) {
+router.get('/getpost/:id', checkKey, function (req, res, next) {
     console.log("Fetch posts")
     const postId = req.params.id;
     const sqlquery = `SELECT forumposts.id, forumposts.title, forumposts.body, forumposts.created, forumposts.edited, forumPosts.userId,
@@ -74,7 +88,7 @@ router.get('/getpost/:id', function (req, res, next) {
 
 //https://stackoverflow.com/questions/2802713/changing-a-sum-returned-null-to-zero
 //https://stackoverflow.com/questions/73990118/sql-count-occurrences-of-an-id-from-another-table-in-multiple-rows
-router.get('/getposts', function (req, res, next) {
+router.get('/getposts', checkKey, function (req, res, next) {
     const postId = req.body.postId;
     console.log("Fetch posts")
     const sqlquery = `SELECT forumposts.id, forumposts.title, forumposts.body, forumposts.created, forumposts.edited, forumPosts.userId,
@@ -112,7 +126,7 @@ router.get('/getposts', function (req, res, next) {
     })
 })
 
-router.post('/addpost', [check('text').not().isEmpty()], function (req, res, next) {
+router.post('/addpost', checkKey, [check('text').not().isEmpty()], function (req, res, next) {
     console.log("adding post")
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -139,7 +153,7 @@ router.post('/addpost', [check('text').not().isEmpty()], function (req, res, nex
     }
 })
 
-router.post('/editpost/:id', [check('text').not().isEmpty()], function (req, res, next) {
+router.post('/editpost/:id', checkKey, [check('text').not().isEmpty()], function (req, res, next) {
     const postId = req.params.id;
     console.log("editing post")
     const errors = validationResult(req);
@@ -167,7 +181,7 @@ router.post('/editpost/:id', [check('text').not().isEmpty()], function (req, res
     }
 })
 
-router.post('/addcomment/:id', [check('text').not().isEmpty()], function (req, res, next) {
+router.post('/addcomment/:id', checkKey, [check('text').not().isEmpty()], function (req, res, next) {
     const postId = req.params.id;
     console.log("adding comment to post " + postId)
     const errors = validationResult(req);
@@ -195,7 +209,7 @@ router.post('/addcomment/:id', [check('text').not().isEmpty()], function (req, r
     }
 })
 
-router.post('/registeruser', [check('email').isEmail(), check('username').not().isEmpty(), check('password').isLength({ min: 8 })], function (req, res, next) {
+router.post('/registeruser', checkKey, [check('email').isEmail(), check('username').not().isEmpty(), check('password').isLength({ min: 8 })], function (req, res, next) {
     console.log()
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -237,7 +251,7 @@ router.post('/registeruser', [check('email').isEmail(), check('username').not().
     }
 })
 
-router.post('/login', function (req, res, next) {
+router.post('/login', checkKey, function (req, res, next) {
     console.log(req.body)
     let sqlquery = `SELECT hashedPassword FROM users WHERE email="${req.sanitize(req.body.email)}"`
     console.log(sqlquery);
@@ -288,7 +302,7 @@ router.post('/login', function (req, res, next) {
 //https://stackoverflow.com/questions/1361340/how-can-i-do-insert-if-not-exists-in-mysql
 //https://www.tutorialspoint.com/mysql/mysql-handling-duplicates.htm
 //https://stackoverflow.com/questions/2219786/best-way-to-avoid-duplicate-entry-into-mysql-database
-router.post('/reportpost/:id', function (req, res, next) {
+router.post('/reportpost/:id', checkKey, function (req, res, next) {
     const postId = req.params.id;
     console.log("reporting post " + postId)
     console.log(req.body)
@@ -305,7 +319,7 @@ router.post('/reportpost/:id', function (req, res, next) {
     })
 })
 
-router.post('/handlereport/:id/:decision', function (req, res, next) {
+router.post('/handlereport/:id/:decision', checkKey, function (req, res, next) {
     const postId = req.params.id;
     const decision = req.params.decision
     console.log(decision);
@@ -347,7 +361,7 @@ router.post('/handlereport/:id/:decision', function (req, res, next) {
     })
 })
 
-router.get('/getreportedposts', function (req, res, next) {
+router.get('/getreportedposts', checkKey, function (req, res, next) {
     const postId = req.body.postId;
     console.log("Fetch posts")
     const sqlquery = `SELECT forumposts.id, forumposts.title, forumposts.body, forumposts.created, forumposts.edited, forumPosts.userId,

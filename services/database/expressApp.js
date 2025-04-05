@@ -1,10 +1,14 @@
 //Databases and the web code (ammended)
+require('@dotenvx/dotenvx').config({ path: `../../.env` });
+
 
 // Import express and express-session
 var express = require('express')
 var session = require('express-session')
 var validator = require ('express-validator');
 const expressSanitizer = require('express-sanitizer');
+
+console.log(process.env.REACT_APP_SEEK_FORUM_API_KEY);
 
 //Import mysql module
 var mysql = require('mysql2')
@@ -38,6 +42,7 @@ db.connect((err) => {
 })
 
 global.db = db
+global.API_KEY = process.env.REACT_APP_SEEK_FORUM_API_KEY;
 
 // Create a session
 app.use(session({
