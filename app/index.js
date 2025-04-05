@@ -15,6 +15,7 @@ const homeScreen = () => {
     const [session, setSession] = useState({});
     useEffect(() => {
         getSession().then(sessiony => setSession(JSON.parse(sessiony)))
+        
     }, []);
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
