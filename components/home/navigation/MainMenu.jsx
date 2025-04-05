@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, Linking } from 'react-native'
 
 import RoundedSquareButton from './RoundedSquareButton'
 
@@ -12,6 +12,8 @@ import { router } from 'expo-router'
 import { getSession, retrieveSession } from '../../../services/forumDatabaseService'
 
 const MainMenu = () => {
+    //https://smartrecovery.org.uk/
+    const url = "https://smartrecovery.org.uk/";
     return (
         <View style={{flex: 1}}>
             <ScrollView>
@@ -53,6 +55,7 @@ const MainMenu = () => {
                     <RoundedSquareButton
                         iconUrl={icons.cloud}
                         title={"learn"}
+                        handlePress={() => Linking.openURL(url)}
                     />
                     <RoundedSquareButton
                         iconUrl={icons.exclamation}
