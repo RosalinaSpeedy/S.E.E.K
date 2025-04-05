@@ -26,6 +26,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    disabledButton: {
+        backgroundColor: '#999999',
+        borderRadius: 40,
+        padding: 15,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     nextStepText: {
         color: COLORS.lightWhite,
         fontWeight: 'bold',

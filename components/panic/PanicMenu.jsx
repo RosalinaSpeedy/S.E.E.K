@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 
 import styles from './panic.style'
-import { router, useRouter } from 'expo-router'
+import { router, useRouter, useFocusEffect } from 'expo-router'
+import { time } from '@tensorflow/tfjs'
 
-const renderStep = (step, setStep) => {
+const renderStep = (step, setStep, time) => {
     const router = useRouter();
     switch (step) {
         case 1:
@@ -53,9 +54,10 @@ const renderStep = (step, setStep) => {
                     <Text style={styles.panicStepBody}>Now breathe... Take some deep breaths and close your eyes, and let your cravings sit with you; don't try and force them out of your head. Just let them come, then let them go again.</Text>
                     <TouchableOpacity
                         onPress={() => setStep(step + 1)}
-                        style={styles.nextStepButton}
+                        style={time > 0 ? styles.disabledButton : styles.nextStepButton}
+                        disabled={time > 0 ? true : false}
                     >
-                        <Text style={styles.nextStepText}>Light work</Text>
+                        <Text style={styles.nextStepText}>{`(${time}) Light work`}</Text>
                     </TouchableOpacity>
                 </View>
             )
@@ -91,9 +93,15 @@ const renderStep = (step, setStep) => {
 }
 
 const PanicMenu = ({ step, setStep }) => {
+    const [time, setTime] = useState(30);
 
+    useFocusEffect(() => {
+        if (step == 4 && time > 0) {
+            setTimeout(() => setTime(time - 1), 1000);
+        }
+    });
     return (
-        renderStep(step, setStep)
+        renderStep(step, setStep, time)
     )
 }
 
