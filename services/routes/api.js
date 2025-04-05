@@ -53,7 +53,8 @@ router.get('/getpost/:id', function (req, res, next) {
                                   users.userName
                                   FROM forumcomments 
                                   INNER JOIN users ON forumcomments.userId = users.id
-                                  WHERE users.id=forumcomments.userId AND forumcomments.postId=${postId}`
+                                  WHERE users.id=forumcomments.userId AND forumcomments.postId=${postId}
+                                  ORDER BY forumcomments.edited DESC`
             db.query(commentQuery, (err, result2) => {
                 if (err) {
                     next(err)
@@ -82,7 +83,8 @@ router.get('/getposts', function (req, res, next) {
                       LEFT OUTER JOIN users ON forumposts.userId = users.id
                       LEFT OUTER JOIN forumcomments on forumposts.id = forumcomments.postId
                       WHERE users.id=forumposts.userId
-                      GROUP BY forumposts.id`
+                      GROUP BY forumposts.id
+                      ORDER BY forumposts.edited DESC`
     db.query(sqlquery, (err, result) => {
         if (err) {
             next(err)
@@ -353,7 +355,8 @@ router.get('/getreportedposts', function (req, res, next) {
                       FROM forumposts
                       LEFT OUTER JOIN users ON forumposts.userId = users.id
                       LEFT OUTER JOIN reported on reported.postId = forumposts.id
-                      WHERE reported.postId=forumposts.id`
+                      WHERE reported.postId=forumposts.id
+                      ORDER BY forumposts.edited DESC`
     db.query(sqlquery, (err, result) => {
         if (err) {
             next(err)
