@@ -15,7 +15,7 @@ const MainHeader = () => {
                 headerLeft: () => (
                     <SeekIcon iconUrl={icons.logo} dimension={"60%"} handlePress={() => {
                         console.log("ICON!")
-                        router.push("/")
+                        router.push("/emotions/tracking")
                     }}/>
                 ),
                 headerRight: () => (

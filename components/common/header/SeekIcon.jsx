@@ -5,7 +5,7 @@ import styles from './screenheader.style'
 
 const SeekIcon = ({ iconUrl, dimension, handlePress }) => {
   return (
-    <TouchableOpacity onPress={handlePress} style={styles.buttonContainer}>
+    <TouchableOpacity onPressIn={handlePress} style={styles.buttonContainer}>
       <Image 
         source={iconUrl}
         resizeMode='cover'

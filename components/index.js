@@ -80,6 +80,10 @@ import ReportedPostsTitle from "./forum/ReportedPostsTitle";
 // panic
 import PanicMenu from "./panic/PanicMenu";
 
+// emotions
+import EmotionOptions from "./emotions/EmotionOptions";
+import GoodNightTitle from "./emotions/GoodNightTitle";
+
 // job details screen
 import Company from "./jobdetails/company/Company";
 import { default as JobTabs } from "./jobdetails/tabs/Tabs";
@@ -161,5 +165,7 @@ export {
   ReportedPostsList,
   ReportedPostsTitle,
   AdminMainMenu,
-  PanicMenu
+  PanicMenu,
+  EmotionOptions,
+  GoodNightTitle
 };
