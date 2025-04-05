@@ -1,18 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, ScrollView, SafeAreaView, Text } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 
 import { COLORS, icons, images, SIZES } from "../constants";
-import { MainMenu, MainFooter, MainHeader } from "../components";
+import { MainMenu, MainFooter, MainHeader, AdminMainMenu } from "../components";
+import { getSession } from '../services/forumDatabaseService';
 
 const homeScreen = () => {
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState("");
+    const [session, setSession] = useState({});
+    useEffect(() => {
+        getSession().then(sessiony => setSession(JSON.parse(sessiony)))
+    }, []);
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
             <MainHeader/>
             <ScrollView>
-                <MainMenu/>
+                {session?.clearance === "admin" ? <AdminMainMenu/> : <MainMenu/>}
             </ScrollView>
             <MainFooter/>
         </SafeAreaView>

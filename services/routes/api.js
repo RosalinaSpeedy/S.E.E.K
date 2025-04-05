@@ -29,22 +29,6 @@ router.post('/deletepost/:id', function (req, res, next) {
                 else {
                     console.log("posts deleted")
                     res.json(result1)
-                    // const fetch = `SELECT forumposts.id, forumposts.title, forumposts.body, forumposts.created, forumposts.edited, forumPosts.userId,
-                    //                   users.userName, users.email, SUM(IFNULL(forumposts.id = forumcomments.postId, 0)) as commentCount
-                    //                   FROM forumposts
-                    //                   LEFT OUTER JOIN users ON forumposts.userId = users.id
-                    //                   LEFT OUTER JOIN forumcomments on forumposts.id = forumcomments.postId
-                    //                   WHERE users.id=forumposts.userId
-                    //                   GROUP BY forumposts.id`
-                    // db.query(fetch, (err, result2) => {
-                    //     if (err) {
-                    //         next(err)
-                    //     }
-                    //     else {
-                    //         console.log(result2);
-                    //         res.json(result2);
-                    //     }
-                    // })
                 }
             })
         }
@@ -75,10 +59,10 @@ router.get('/getpost/:id', function (req, res, next) {
                     next(err)
                 }
                 else {
-                    console.log(result);
-                    console.log(result2);
+                    //console.log(result);
+                    //console.log(result2);
                     result[0].comments = result2;
-                    console.log(result);
+                    //console.log(result);
                     res.json(result)
                     //res.redirect('/api/getposts');
                 }
@@ -119,7 +103,7 @@ router.get('/getposts', function (req, res, next) {
             //         res.json(result);
             //     }
             // })
-            console.log(result);
+            //console.log(result);
             res.json(result)
 
         }
@@ -276,7 +260,7 @@ router.post('/login', function (req, res, next) {
             if (err) {
                 next(err)
             } else if (result == true) {
-                let idQuery = `SELECT id, username FROM users WHERE email="${req.body.email}"`;
+                let idQuery = `SELECT id, username, clearance FROM users WHERE email="${req.body.email}"`;
                 db.query(idQuery, (err, result1) => {
                     if (err) {
                         next(err)
@@ -284,6 +268,7 @@ router.post('/login', function (req, res, next) {
                     else if (result1.length == 1) {
                         user.id = result1[0].id;
                         user.username = result1[0].username;
+                        user.clearance = result1[0].clearance;
                         res.json(user);
                     }
                     else {
@@ -314,6 +299,84 @@ router.post('/reportpost/:id', function (req, res, next) {
         }
         else {
             res.json(result)
+        }
+    })
+})
+
+router.post('/handlereport/:id/:decision', function (req, res, next) {
+    const postId = req.params.id;
+    const decision = req.params.decision
+    console.log(decision);
+    console.log("handling reported post " + postId)
+    console.log(req.body)
+    let sqlquery = `DELETE FROM reported WHERE postId=${postId}`
+    // execute sql query
+    let newrecord = [req.body.userId, postId]
+    db.query(sqlquery, newrecord, (err, result) => {
+        if (err) {
+            next(err)
+        }
+        else {
+            if (decision === "delete") {
+                const deleteQuery = `DELETE forumcomments.* FROM forumcomments INNER JOIN forumposts 
+                                     ON forumcomments.postId = forumposts.id  
+                                     WHERE forumcomments.postId=${postId}`
+                db.query(deleteQuery, (err, result1) => {
+                    if (err) {
+                        next(err)
+                    }
+                    else {
+                        const postQuery = `DELETE FROM forumposts WHERE id=${postId}`
+                        db.query(postQuery, (err, result2) => {
+                            if (err) {
+                                next(err)
+                            }
+                            else {
+                                console.log("posts deleted")
+                                res.json(result2)
+                            }
+                        })
+                    }
+                })
+            } else {
+                res.json(result);
+            }
+        }
+    })
+})
+
+router.get('/getreportedposts', function (req, res, next) {
+    const postId = req.body.postId;
+    console.log("Fetch posts")
+    const sqlquery = `SELECT forumposts.id, forumposts.title, forumposts.body, forumposts.created, forumposts.edited, forumPosts.userId,
+                      users.userName, users.email
+                      FROM forumposts
+                      LEFT OUTER JOIN users ON forumposts.userId = users.id
+                      LEFT OUTER JOIN reported on reported.postId = forumposts.id
+                      WHERE reported.postId=forumposts.id`
+    db.query(sqlquery, (err, result) => {
+        if (err) {
+            next(err)
+        }
+        else {
+            // const commentQuery = `SELECT forumcomments.id
+            //                       FROM forumcomments 
+            //                       WHERE forumcomments.postId=${postId}`
+            // db.query(commentQuery, (err, result2) => {
+            //     if (err) {
+            //         next(err)
+            //     }
+            //     else {
+            //         console.log(result);
+            //         console.log(result2);
+            //         result[0].comments = result2;
+            //         console.log(result);
+            //         res.json(result);
+            //     }
+            // })
+            //console.log(result);
+            res.json(result)
+
         }
     })
 })

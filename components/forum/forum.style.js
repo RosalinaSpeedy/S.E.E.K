@@ -187,6 +187,41 @@ const styles = StyleSheet.create({
         left: 0,
         top: 0,
         backgroundColor: 'red'
+    },
+    approvalButtonsContainer: {
+        flexDirection: 'row',
+        position: 'absolute',
+        right: 0,
+        bottom: 0
+    },
+    approveButton: {
+        borderRadius: 5,
+        borderBlockColor: '#000000',
+        borderWidth: 2,
+        backgroundColor: '#06D6A0',
+        margin: 5,
+        padding: 3,
+        height: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 1
+    },
+    deleteButton: {
+        borderRadius: 5,
+        borderBlockColor: '#000000',
+        borderWidth: 2,
+        backgroundColor: '#E11313',
+        margin: 5,
+        padding: 3,
+        height: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 1
+    },
+    approveButtonText: {
+        fontWeight: 'bold',
+        fontSize: 13,
+        color: 'white'
     }
 });
 

@@ -12,6 +12,7 @@ import Popularjobs from "./home/popular/Popularjobs";
 import RoundedSquareButton from "./home/navigation/RoundedSquareButton";
 import MainMenu from "./home/navigation/MainMenu";
 import Quotes from "./home/quotes/Quotes"
+import AdminMainMenu from "./home/navigation/AdminMainMenu";
 
 // clocks
 import Tracker from "./clocks/Tracker";
@@ -72,6 +73,9 @@ import NewPostTitle from "./forum/NewPostTitle";
 import PostButton from "./forum/PostButton";
 import CommentButton from "./forum/CommentButton";
 import TripleDotMenu from "./forum/TripleDotMenu";
+import ApprovalOptions from "./forum/ApprovalOptions";
+import ReportedPostsList from "./forum/ReportedPostsList";
+import ReportedPostsTitle from "./forum/ReportedPostsTitle";
 
 // job details screen
 import Company from "./jobdetails/company/Company";
@@ -149,5 +153,9 @@ export {
   NewPostTitle,
   RegisterBoxes,
   CommentButton,
-  TripleDotMenu
+  TripleDotMenu,
+  ApprovalOptions,
+  ReportedPostsList,
+  ReportedPostsTitle,
+  AdminMainMenu
 };
