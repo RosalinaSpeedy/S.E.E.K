@@ -4,7 +4,8 @@ let KEY = 'JOURNAL_SERVICE'
 
 export async function getAllEntries() {
     const entries = (await AsyncStorage.getItem(KEY)) ?? '[]';
-    return JSON.parse(entries);
+    //console.log(JSON.parse(entries))
+    return JSON.parse(entries).reverse();
 }
 
 export async function saveEntriesToStorage(entries) {
