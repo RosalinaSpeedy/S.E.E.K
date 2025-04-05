@@ -77,6 +77,9 @@ import ApprovalOptions from "./forum/ApprovalOptions";
 import ReportedPostsList from "./forum/ReportedPostsList";
 import ReportedPostsTitle from "./forum/ReportedPostsTitle";
 
+// panic
+import PanicMenu from "./panic/PanicMenu";
+
 // job details screen
 import Company from "./jobdetails/company/Company";
 import { default as JobTabs } from "./jobdetails/tabs/Tabs";
@@ -157,5 +160,6 @@ export {
   ApprovalOptions,
   ReportedPostsList,
   ReportedPostsTitle,
-  AdminMainMenu
+  AdminMainMenu,
+  PanicMenu
 };

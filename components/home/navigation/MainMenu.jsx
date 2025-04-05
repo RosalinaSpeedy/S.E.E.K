@@ -57,6 +57,7 @@ const MainMenu = () => {
                     <RoundedSquareButton
                         iconUrl={icons.exclamation}
                         title={"panic!"}
+                        handlePress={() => router.push('/panic/panic')}
                     />
                 </View>
                 <Quotes
