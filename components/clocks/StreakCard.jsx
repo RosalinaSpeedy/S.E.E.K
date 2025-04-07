@@ -23,6 +23,19 @@ const StreakCard = ({ id, relapses, startDate, addictionName, handlePress }) => 
     ]);
   }
 
+  const getBadges = (days) => {
+    if (days > 84) {
+      return icons.goldTrophy
+    }
+    if (days > 28) {
+      return icons.silverTrophy
+    }
+    if (days > 7) {
+      return icons.bronzeTrophy
+    }
+    return icons.plant
+  }
+
   useEffect(() => {
     //this doesn't exist yet but yeah:
     if (relapses?.length > 0) {
@@ -38,7 +51,7 @@ const StreakCard = ({ id, relapses, startDate, addictionName, handlePress }) => 
     <View style={styles.streakCardContainer}>
       <TouchableOpacity style={styles.streakCardButton} onPress={handlePress}>
         <View style={styles.streakCardTextContainer}>
-          <Image style={styles.badgeIcon} source={icons.goldTrophy} />
+          <Image style={styles.badgeIcon} source={getBadges(time.days)} />
           <View style={styles.streakInfoContainer}>
             <Text style={styles.cardAddictionName}>{addictionName}</Text>
             <Text style={styles.streakInfoText}>{`Days active: ${time.days < 0 ? 0 : time.days}`}</Text>

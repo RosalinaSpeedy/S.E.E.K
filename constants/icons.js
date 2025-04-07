@@ -24,6 +24,9 @@ import sad from '../assets/icons/sad.png'
 import tickbox from '../assets/icons/tickbox.png'
 import goldTrophy from '../assets/icons/trophy.png'
 import tripleDots from '../assets/icons/tripledots.png'
+import silverTrophy from '../assets/icons/silverTrophy.png'
+import bronzeTrophy from '../assets/icons/bronzeTrophy.png'
+import plant from '../assets/icons/plant.png'
 
 
 export default {
@@ -52,5 +55,8 @@ export default {
   sad,
   tickbox,
   goldTrophy,
-  tripleDots
+  tripleDots,
+  silverTrophy,
+  bronzeTrophy,
+  plant
 };
