@@ -27,7 +27,7 @@ const homeScreen = () => {
         console.log("EMOTION I GOT:");
         console.log(emotiony);
         if (emotiony) {
-            if (emotiony.id?.toISOString().split("T")[0] == today.toISOString().split("T")[0]) {
+            if (emotiony.id?.split("T")[0] == today.toISOString().split("T")[0]) {
                 console.log("nothing wrong with this")
                 setSettingEmotion(false);
             } else {

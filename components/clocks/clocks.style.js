@@ -385,6 +385,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 15
   },
+  emotionIcon: {
+    width: 25,
+    height: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   todayRing: {
     borderWidth: 2,
     borderColor: '#06D6A0',
