@@ -34,7 +34,7 @@ export async function editEntry(id, text) {
         id: idDate,
         date: idDate.toLocaleDateString('en-GB'),
         text: text,
-        emotion: "smiley"
+        emotion: null
     })
     console.log(entries);
     saveEntriesToStorage(entries);
