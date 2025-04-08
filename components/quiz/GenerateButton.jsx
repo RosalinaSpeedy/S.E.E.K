@@ -3,9 +3,9 @@ import { Text, TouchableOpacity } from 'react-native'
 
 import styles from './quiz.style'
 
-const GenerateButton = () => {
+const GenerateButton = ({handlePress}) => {
   return (
-    <TouchableOpacity style={styles.generateButton}>
+    <TouchableOpacity onPress={handlePress} style={styles.generateButton}>
         <Text style={styles.generateButtonText}>
             Generate
         </Text>

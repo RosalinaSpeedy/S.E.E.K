@@ -12,7 +12,7 @@ const addictionTypes = [
     { key: '5', value: 'Gambling' }
 ]
 
-const AddictionTypeSelect = () => {
+const AddictionTypeSelect = ({setAddictionType}) => {
     const [selected, setSelected] = useState("");
     return (
         <View style={styles.typeSelectContainer}>
@@ -23,6 +23,7 @@ const AddictionTypeSelect = () => {
                 setSelected={(val) => setSelected(val)} 
                 data={addictionTypes} 
                 save="value"
+                onSelect={() => setAddictionType(selected)}
             />
         </View>
     )

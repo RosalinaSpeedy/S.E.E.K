@@ -4,7 +4,7 @@ import Slider from '@react-native-community/slider';
 
 import styles from './quiz.style'
 
-const SeveritySelect = () => {
+const SeveritySelect = ({setSeverity}) => {
   return (
     <View style={styles.severitySelectContainer}>
         <Text>
@@ -18,6 +18,7 @@ const SeveritySelect = () => {
             step={0.1}
             minimumTrackTintColor="#818181"
             maximumTrackTintColor="#808080"
+            onSlidingComplete={setSeverity}
         />
     </View>
   )
