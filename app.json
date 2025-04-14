@@ -2,9 +2,13 @@
   "expo": {
     "scheme": "acme",
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "react-native-pytorch-core"
     ],
     "name": "S.E.E.K",
-    "slug": "S.E.E.K"
+    "slug": "S.E.E.K",
+    "android": {
+      "package": "com.anonymous.S.E.E.K"
+    }
   }
 }
