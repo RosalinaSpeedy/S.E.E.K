@@ -78,7 +78,11 @@ const Plan = () => {
             <ScrollView>
                 <View>
                     <PledgeTitle/>
-                    <PledgeContent pledge={tempPledge}/>
+                    <PledgeContent pledge={plan ? {
+                        pledge1: plan.copingStrategy1,
+                        pledge2: plan.copingStrategy2,
+                        pledge3: plan.copingStrategy3
+                    } : "No pledges available!"}/>
                     <ConfirmButton/>
                 </View>
                 <View>
