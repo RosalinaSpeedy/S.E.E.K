@@ -1,10 +1,16 @@
-import {Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity} from "react-native";
-import {Stack, useRouter, useLocalSearchParams} from 'expo-router';
+import { Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity } from "react-native";
+import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { useCallback, useState } from "react";
 
-import {MainFooter, MainHeader, QuizHeading, AddictionTypeSelect, TriggerInputs, SeveritySelect, GenerateButton, BackButton} from '../../components';
-import {COLORS, icons, SIZES} from '../../constants';
+import { MainFooter, MainHeader, QuizHeading, AddictionTypeSelect, TriggerInputs, SeveritySelect, GenerateButton, BackButton } from '../../components';
+import { COLORS, icons, SIZES } from '../../constants';
 import styles from "../../styles/search";
+import axios from "axios";
+
+import { savePlan } from "../../services/junkoService";
+
+//this needs to be changed based on the URL at the time - MAKE THIS STATIC SOMEHOW
+const baseUrl = "http://5245-34-121-78-202.ngrok-free.app";
 
 const Quiz = () => {
     const params = useLocalSearchParams();
@@ -14,13 +20,31 @@ const Quiz = () => {
     const [trigger2, setTrigger2] = useState("");
     const [trigger3, setTrigger3] = useState("");
     const [severity, setSeverity] = useState(0);
+    const [plan, setPlan] = useState("");
 
+    const generatePlan = async (prompt) => {
+        try {
+            await axios.get(`${baseUrl}/submit-prompt?prompt=${prompt}`, {
+
+            }).then(async (response) => {
+                console.log("GOT plan output")
+                console.log(response.data.content);                // AsyncStorage.setItem(KEY + "_TMPPOSTS", JSON.stringify(response.data));
+                // console.log("posts saved " + JSON.stringify(response.data))
+                //setPlan(response.data.content);
+                await savePlan(response.data.content);
+                console.log("plan saved")
+                router.push("/relapseprevention/plan")
+            });
+        } catch (error) {
+            console.log('Error fetching plan:', error);
+        }
+    };
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
-            <MainHeader/>
+            <MainHeader />
             <ScrollView>
-                <QuizHeading/>
+                <QuizHeading />
                 <AddictionTypeSelect
                     setAddictionType={setAddictionType}
                 />
@@ -33,14 +57,15 @@ const Quiz = () => {
                     setSeverity={setSeverity}
                 />
                 <GenerateButton
-                    handlePress={() => {
-                        const prompt = `Addiction name: ${addictionType}\nTriggers:\n- ${trigger1}\n- ${trigger2}\n- ${trigger3}\nAddiction Severity:\n${Math.round(severity * 10) / 10}\n`;
+                    handlePress={async () => {
+                        const prompt = `Addiction name: ${addictionType} Triggers: - ${trigger1} - ${trigger2} - ${trigger3} Addiction Severity: ${Math.round(severity * 10) / 10} Warning Signs - `;
                         console.log(prompt);
+                        await generatePlan(prompt).then(console.log(plan));
                     }}
                 />
             </ScrollView>
-            <BackButton handlePress={() => router.back()}/>
-            <MainFooter/>
+            <BackButton handlePress={() => router.back()} />
+            <MainFooter />
         </SafeAreaView>
     )
 }

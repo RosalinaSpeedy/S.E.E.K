@@ -6,6 +6,7 @@ import styles from './relapseprevention.style'
 const PlanBody = ({plan}) => {
   return (
     <View style={styles.planBodyContainer}>
+      <Text>{`${plan.name}`}</Text>
       <Text style={styles.planHeading}>Triggers:</Text>
       <Text>{`\u2022 ${plan.trigger1}`}</Text>
       <Text>{`\u2022 ${plan.trigger2}`}</Text>

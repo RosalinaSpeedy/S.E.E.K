@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     planBodyContainer: {
-        padding: '2%'
+        paddingTop: '0%',
+        paddingLeft: '2%'
     },
     regenerateButton: {
         backgroundColor: '#06D6A0',
