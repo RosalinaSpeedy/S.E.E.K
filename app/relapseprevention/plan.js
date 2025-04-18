@@ -1,12 +1,13 @@
-import {Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity} from "react-native";
-import {Stack, useRouter, useLocalSearchParams} from 'expo-router';
+import { Text, View, SafeAreaView, ScrollView, ActivityIndicator, RefreshControl, TouchableOpacity } from "react-native";
+import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useState } from "react";
 
-import {MainFooter, MainHeader, PledgeTitle, PledgeContent, ConfirmButton, PlanTitle, PlanBody, RegenerateButton} from '../../components';
-import {COLORS, icons, SIZES} from '../../constants';
+import { MainFooter, MainHeader, PledgeTitle, PledgeContent, ConfirmButton, PlanTitle, PlanBody, RegenerateButton } from '../../components';
+import { COLORS, icons, SIZES } from '../../constants';
 import styles from "../../styles/search";
 
 import { getSavedPlan, savePlan } from "../../services/junkoService";
+import { getMostRecentPledge, setMostRecentPledge } from "../../services/junkoService";
 
 const tempPledge = {
     pledge1: "pledge one",
@@ -26,17 +27,44 @@ const tempPlan = {
     copingStrategy3: "coping strategy",
 }
 
+const today = new Date();
+
 const Plan = () => {
     const params = useLocalSearchParams();
     const router = useRouter();
     const [plan, setPlan] = useState("");
     const [formattedPlan, setFormattedPlan] = useState({});
-    
+    const [pledgeSet, setPledgeSet] = useState(false);
+
+    const getPledgeConfirmed = async () => {
+        //if (settingEmotion) {
+        console.log("Getting confirmation!");
+        const pledgey = await getMostRecentPledge();
+        console.log("content:");
+        console.log(pledgey);
+        if (pledgey) {
+            if (pledgey.split("T")[0] == today.toISOString().split("T")[0]) {
+                console.log("nothing wrong with this")
+                setPledgeSet(true);
+            } else {
+                console.log("no pledge confirmation found for today");
+                //router.push('/emotions/tracking');
+                setPledgeSet(false);
+            }
+        } else {
+            console.log("no pledge confirmation found for today");
+            //router.push('/emotions/tracking');
+            setPledgeSet(false);
+        }
+        //}
+    }
+
     useEffect(() => {
         getSavedPlan().then(plany => prettify(plany));
+        getPledgeConfirmed()
         //console.log(plan)
         //console.log(prettify());
-    }, []);
+    }, [pledgeSet]);
 
     const prettify = (plany) => {
         //let planTrimmed = plan.trim();
@@ -74,24 +102,27 @@ const Plan = () => {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
-            <MainHeader/>
+            <MainHeader />
             <ScrollView>
                 <View>
-                    <PledgeTitle/>
+                    <PledgeTitle />
                     <PledgeContent pledge={plan ? {
                         pledge1: plan.copingStrategy1,
                         pledge2: plan.copingStrategy2,
                         pledge3: plan.copingStrategy3
-                    } : "No pledges available!"}/>
-                    <ConfirmButton/>
+                    } : "No pledges available!"} />
+                    <ConfirmButton pledgeSet={pledgeSet} handlePress={async () => {
+                        await setMostRecentPledge();
+                        setPledgeSet(true)
+                    }}/>
                 </View>
                 <View>
-                    <PlanTitle/>
-                    <PlanBody plan={plan}/>
+                    <PlanTitle />
+                    <PlanBody plan={plan} />
                 </View>
-                <RegenerateButton handlePress={() => router.push('/relapseprevention/quiz')}/>
+                <RegenerateButton pledgeSet={pledgeSet} handlePress={() => router.push('/relapseprevention/quiz')} />
             </ScrollView>
-            <MainFooter/>
+            <MainFooter />
         </SafeAreaView>
     )
 }

@@ -15,3 +15,16 @@ export async function savePlan(plan) {
     AsyncStorage.setItem(KEY, JSON.stringify(plan));
     console.log("plan has been saved")
 }
+
+export async function getMostRecentPledge() {
+    console.log("getting most recent pledge");
+    const pledge = (await AsyncStorage.getItem(KEY + "_PLEDGE")) ?? "";
+    console.log(pledge);
+    return JSON.parse(pledge);
+}
+
+export async function setMostRecentPledge() {
+    const today = new Date()
+    AsyncStorage.setItem(KEY + "_PLEDGE", JSON.stringify(today));
+    console.log("pledge has been saved")
+}

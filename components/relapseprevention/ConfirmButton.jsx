@@ -3,11 +3,16 @@ import { Text, TouchableOpacity } from 'react-native'
 
 import styles from './relapseprevention.style'
 
-const ConfirmButton = () => {
+const ConfirmButton = ({pledgeSet, handlePress}) => {
   return (
-    <TouchableOpacity style={styles.confirmButton}>
+                        
+    <TouchableOpacity
+      style={pledgeSet ? styles.disabledButton : styles.confirmButton}
+      disabled={pledgeSet ? true : false}
+      onPress={handlePress}
+    >
         <Text style={styles.confirmText}>
-            Confirm
+            {pledgeSet ? "Good luck!" : "Confirm"}
         </Text>
     </TouchableOpacity>
   )

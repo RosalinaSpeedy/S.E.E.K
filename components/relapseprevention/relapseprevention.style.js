@@ -33,6 +33,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    disabledButton: {
+        backgroundColor: '#999999',
+        width: '50%',
+        alignSelf: 'center',
+        marginTop: '6%',
+        padding: '2%',
+        borderRadius: 40,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     confirmText: {
         fontSize: SIZES.large,
         fontWeight: 'bold'

@@ -7,6 +7,8 @@ import { MainMenu, MainFooter, MainHeader, AdminMainMenu } from "../components";
 import { getSession } from '../services/forumDatabaseService';
 import { getMostRecentEmotion, saveEmotions } from '../services/emotionsService';
 
+import { getMostRecentPledge } from '../services/junkoService';
+
 import axios from 'axios';
 axios.defaults.headers.common['REACT_APP_SEEK_FORUM_API_KEY'] = process.env.REACT_APP_SEEK_FORUM_API_KEY;
 
@@ -18,6 +20,7 @@ const homeScreen = () => {
     const [session, setSession] = useState({});
     const [settingEmotion, setSettingEmotion] = useState(false);
     const [emotion, setEmotion] = useState({});
+    const [pledgeSet, setPledgeSet] = useState(false);
     const today = new Date();
 
     const getEmotionsForSet = async () => {
@@ -43,9 +46,32 @@ const homeScreen = () => {
         //}
     }
 
+    const getPledgeConfirmed = async () => {
+        //if (settingEmotion) {
+        console.log("Getting confirmation!");
+        const pledgey = await getMostRecentPledge();
+        console.log("content:");
+        console.log(pledgey);
+        if (pledgey) {
+            if (pledgey.split("T")[0] == today.toISOString().split("T")[0]) {
+                console.log("nothing wrong with this")
+                setPledgeSet(true);
+            } else {
+                console.log("no pledge confirmation found for today");
+                //router.push('/emotions/tracking');
+                setPledgeSet(false);
+            }
+        } else {
+            console.log("no pledge confirmation found for today");
+            //router.push('/emotions/tracking');
+            setPledgeSet(false);
+        }
+        //}
+    }
+
     useEffect(() => {
         getSession().then(sessiony => setSession(JSON.parse(sessiony)))
-
+        getPledgeConfirmed();
         //saveEmotions([])
     }, []);
     useEffect(() => {
@@ -61,7 +87,7 @@ const homeScreen = () => {
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
             <MainHeader />
             <ScrollView>
-                {session?.clearance === "admin" ? <AdminMainMenu /> : <MainMenu />}
+                {session?.clearance === "admin" ? <AdminMainMenu /> : <MainMenu pledgeSet={pledgeSet}/>}
             </ScrollView>
             <MainFooter />
         </SafeAreaView>

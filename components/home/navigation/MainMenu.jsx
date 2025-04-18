@@ -10,8 +10,10 @@ import Quotes from '../quotes/Quotes'
 import { router } from 'expo-router'
 
 import { getSession, retrieveSession } from '../../../services/forumDatabaseService'
+import AlertIcon from './AlertIcon'
 
-const MainMenu = () => {
+const MainMenu = ({pledgeSet}) => {
+    console.log(pledgeSet)
     //https://smartrecovery.org.uk/
     const url = "https://smartrecovery.org.uk/";
     return (
@@ -28,6 +30,7 @@ const MainMenu = () => {
                         title={"relapse prevention"}
                         handlePress={() => router.push('/relapseprevention/plan')}
                     />
+                    {pledgeSet ? null : <AlertIcon/>}
                     <RoundedSquareButton
                         iconUrl={icons.speechbubble}
                         title={"forum"}

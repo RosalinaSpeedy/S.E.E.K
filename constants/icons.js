@@ -27,6 +27,7 @@ import tripleDots from '../assets/icons/tripledots.png'
 import silverTrophy from '../assets/icons/silverTrophy.png'
 import bronzeTrophy from '../assets/icons/bronzeTrophy.png'
 import plant from '../assets/icons/plant.png'
+import alert from '../assets/icons/alert.png'
 
 
 export default {
@@ -58,5 +59,6 @@ export default {
   tripleDots,
   silverTrophy,
   bronzeTrophy,
-  plant
+  plant,
+  alert
 };

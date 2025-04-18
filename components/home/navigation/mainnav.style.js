@@ -49,6 +49,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 1
+    },
+    alertIcon: {
+        position: 'absolute',
+        right: 100,
+        top: -2,
+        right: 140,
+        width: 60,
+        height: 60,
+        zIndex: 15,
+        
     }
 });
 
