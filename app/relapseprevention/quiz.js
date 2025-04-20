@@ -10,7 +10,7 @@ import axios from "axios";
 import { savePlan } from "../../services/junkoService";
 
 //this needs to be changed based on the URL at the time - MAKE THIS STATIC SOMEHOW
-const baseUrl = "http://bb75-34-69-117-164.ngrok-free.app";
+const baseUrl = "http://trusting-multiply-rattler.ngrok-free.app";
 
 const Quiz = () => {
     const params = useLocalSearchParams();
