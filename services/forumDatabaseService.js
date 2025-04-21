@@ -10,7 +10,7 @@ const KEY = "SESSION";
 
 //const { manifest } = Constants;
 //https://stackoverflow.com/questions/47417766/calling-locally-hosted-server-from-expo-app
-export const baseUrl = `http://${Constants.expoConfig?.hostUri?.split(':').shift()?.concat(':8000/api')}`;
+export const baseUrl = `https://seekexpressapi-7ef0aaa97fcf.herokuapp.com/api`;
 
 //https://stackoverflow.com/questions/51143730/axios-posting-empty-request
 export async function registerUser(email, username, password) {
