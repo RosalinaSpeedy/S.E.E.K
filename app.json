@@ -24,6 +24,11 @@
     "updates": {
       "url": "https://u.expo.dev/ec0a6254-138d-4e35-8173-3e09453da456"
     },
-    "ios": {}
+    "ios": {
+      "bundleIdentifier": "com.anonymous.S.E.E.K",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    }
   }
 }
