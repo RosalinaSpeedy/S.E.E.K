@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 
 import {MainFooter, MainHeader, JournalTitle, JournalEntries, AddButton, NewEntryTitle, NewEntryInput, SaveButton, CancelButton} from '../../components';
 import {COLORS, icons, SIZES} from '../../constants';
-import styles from "../../styles/search";
 import { editEntry, getEntryById, saveEntry } from "../../services/journalService";
 
 const AddEntry = ({entryData}) => {

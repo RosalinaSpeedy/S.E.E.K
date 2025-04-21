@@ -4,7 +4,6 @@ import { useCallback, useState } from "react";
 
 import { MainFooter, MainHeader, QuizHeading, AddictionTypeSelect, TriggerInputs, SeveritySelect, GenerateButton, BackButton } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
-import styles from "../../styles/search";
 import axios from "axios";
 
 import { savePlan } from "../../services/junkoService";

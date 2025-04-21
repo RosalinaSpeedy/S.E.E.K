@@ -6,9 +6,6 @@ import HomeButton from "./common/footer/HomeButton";
 import MainFooter from "./common/footer/MainFooter";
 
 // home screen
-import Welcome from "./home/welcome/Welcome";
-import Nearbyjobs from "./home/nearby/Nearbyjobs";
-import Popularjobs from "./home/popular/Popularjobs";
 import RoundedSquareButton from "./home/navigation/RoundedSquareButton";
 import MainMenu from "./home/navigation/MainMenu";
 import Quotes from "./home/quotes/Quotes"
@@ -84,27 +81,8 @@ import PanicMenu from "./panic/PanicMenu";
 import EmotionOptions from "./emotions/EmotionOptions";
 import GoodNightTitle from "./emotions/GoodNightTitle";
 
-// job details screen
-import Company from "./jobdetails/company/Company";
-import { default as JobTabs } from "./jobdetails/tabs/Tabs";
-import { default as JobAbout } from "./jobdetails/about/About";
-import { default as JobFooter } from "./jobdetails/footer/Footer";
-import Specifics from "./jobdetails/specifics/Specifics";
-
-// common
-import NearbyJobCard from "./common/cards/nearby/NearbyJobCard";
-
 export {
   ScreenHeaderBtn,
-  Welcome,
-  Nearbyjobs,
-  Popularjobs,
-  Company,
-  JobTabs,
-  JobAbout,
-  JobFooter,
-  Specifics,
-  NearbyJobCard,
   LogoutButton,
   RoundedSquareButton,
   MainMenu,

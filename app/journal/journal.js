@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 
 import {MainFooter, MainHeader, JournalTitle, JournalEntries, AddButton} from '../../components';
 import {COLORS, icons, SIZES} from '../../constants';
-import styles from "../../styles/search";
 import { getAllEntries, setEntries } from "../../services/journalService";
 
 const Journal = () => {

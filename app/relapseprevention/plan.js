@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 
 import { MainFooter, MainHeader, PledgeTitle, PledgeContent, ConfirmButton, PlanTitle, PlanBody, RegenerateButton } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
-import styles from "../../styles/search";
 
 import { getSavedPlan, savePlan } from "../../services/junkoService";
 import { getMostRecentPledge, setMostRecentPledge } from "../../services/junkoService";
