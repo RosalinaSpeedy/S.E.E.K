@@ -27,12 +27,19 @@ app.use(express.urlencoded({ extended: true }))
 app.use(expressSanitizer());
 
 // Define the database connection
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'seek_forum_app',
+//     password: 'qwertyuiop',
+//     database: 'seek_forum'
+// })
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'seek_forum_app',
-    password: 'qwertyuiop',
-    database: 'seek_forum'
+    host: process.env.HOST_NAME,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 })
+//console.log(db)
 // Connect to the database
 db.connect((err) => {
     if (err) {
