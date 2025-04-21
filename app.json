@@ -6,9 +6,24 @@
       "react-native-pytorch-core"
     ],
     "name": "S.E.E.K",
-    "slug": "S.E.E.K",
+    "slug": "seek",
     "android": {
       "package": "com.anonymous.S.E.E.K"
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "ec0a6254-138d-4e35-8173-3e09453da456"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ec0a6254-138d-4e35-8173-3e09453da456"
+    },
+    "ios": {}
   }
 }
