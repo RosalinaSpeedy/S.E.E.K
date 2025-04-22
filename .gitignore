@@ -38,3 +38,6 @@ yarn-error.*
 
 app-example
 junkoApi
+
+android/gradle.properties
+android/app/my-upload-key.keystore
