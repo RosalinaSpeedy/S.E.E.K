@@ -14,6 +14,8 @@ const Quotes = () => {
     getQuote().then(quotey => setQuote(quotey));
     console.log(quote)
     setLoadingQuote(false)
+    // saveQuote("a")
+    // saveDay("a")
   }, []);
 
   if (loadingQuote) {
