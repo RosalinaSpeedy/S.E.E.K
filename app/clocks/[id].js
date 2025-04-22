@@ -77,7 +77,7 @@ const Clock = () => {
                     // personalBestPercentage={40}
                     // goalProgressPercentage={68}
                     // currentStreakPercentage={100}
-                    /> : <TrackerCalendar relapses={clock.relapses}/>}
+                    /> : <TrackerCalendar relapses={clock?.relapses}/>}
                 </View>
                 <View>
                     <ClockChangeButtons setClockState={setClockState} />

@@ -23,7 +23,7 @@ const TrackerCalendar = (relapses) => {
   const [selected, setSelected] = useState('');
   const [dayEmotions, setDayEmotions] = useState([]);
  
-  const [relapseMarkers, setRelapseMarkers] = useState(relapses.relapses.map((item) => {
+  const [relapseMarkers, setRelapseMarkers] = useState(relapses?.relapses?.map((item) => {
     item = new Date(item);
     item = item.toISOString().split('T')[0];
     return item;
