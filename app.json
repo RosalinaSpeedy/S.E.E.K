@@ -2,8 +2,7 @@
   "expo": {
     "scheme": "acme",
     "plugins": [
-      "expo-router",
-      "react-native-pytorch-core"
+      "expo-router"
     ],
     "name": "S.E.E.K",
     "slug": "seek",
