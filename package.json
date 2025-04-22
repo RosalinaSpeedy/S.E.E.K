@@ -58,8 +58,7 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.19.13",
     "terser": "^5.39.0",
-    "unimodules-app-loader": "^5.0.1",
-    "unimodules-task-manager-interface": "^7.1.1"
+    "unimodules-app-loader": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
