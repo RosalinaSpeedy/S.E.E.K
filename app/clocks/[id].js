@@ -23,9 +23,9 @@ const Clock = () => {
         } else if (clock) {
             getTime(clock.startDate).then(timey => setTime(timey));
         }});
-        if (time.days > clock.currentStreak && clock) {
+        if (time.days > clock?.currentStreak && clock) {
             //console.log("updating streak")
-            updateStreak(clock.id, clock.currentStreak + 7).then(clock => setClock(clock))
+            updateStreak(clock.id, clock?.currentStreak + 7).then(clock => setClock(clock))
         }
         //console.log(clocks)
 
@@ -50,7 +50,7 @@ const Clock = () => {
     useFocusEffect(() => {
         //console.log(clock)
         //console.log(time)
-        if (time.days > clock.personalBest) {
+        if (time.days > clock?.personalBest) {
             //console.log("updating PB")
             setPersonalBest(clock.id).then(clock => setClock(clock))
         }
@@ -68,7 +68,7 @@ const Clock = () => {
             <MainHeader />
             <ScrollView>
                 <AddictionTitle
-                    title={clock.addictionName}
+                    title={clock?.addictionName}
                 />
                 <View>
                     {clockState ? <Tracker

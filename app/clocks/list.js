@@ -33,7 +33,7 @@ const ClockList = () => {
                     id={item.id}
                     startDate={item.startDate}
                     relapses={item.relapses}
-                    addictionName={item.addictionName}
+                    addictionName={item?.addictionName}
                 />}
                 keyExtractor={clock => clock.id}
                 ListEmptyComponent={() => (
