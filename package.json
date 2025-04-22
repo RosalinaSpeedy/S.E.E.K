@@ -26,7 +26,6 @@
     "expo-application": "^6.0.2",
     "expo-constants": "~17.0.5",
     "expo-font": "~13.0.3",
-    "expo-gl": "~15.0.5",
     "expo-image-loader": "^5.0.0",
     "expo-linking": "~7.0.5",
     "expo-router": "~4.0.20",
