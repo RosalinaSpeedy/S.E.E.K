@@ -3,7 +3,6 @@ import { Text, TouchableOpacity, View } from 'react-native'
 
 import styles from './panic.style'
 import { router, useRouter, useFocusEffect } from 'expo-router'
-import { time } from '@tensorflow/tfjs'
 
 const renderStep = (step, setStep, time) => {
     const router = useRouter();
