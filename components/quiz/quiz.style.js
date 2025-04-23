@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         width: '50%',
         padding: '4%',
         alignSelf: 'center',
-        marginTop: '22.5%'
+        marginTop: '5%'
     },
     generateButtonText: {
         fontSize: SIZES.large,

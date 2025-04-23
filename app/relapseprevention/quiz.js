@@ -20,6 +20,7 @@ const Quiz = () => {
     const [trigger3, setTrigger3] = useState("");
     const [severity, setSeverity] = useState(0);
     const [plan, setPlan] = useState("");
+    const [planLoading, setPlanLoading] = useState(false);
 
     const generatePlan = async (prompt) => {
         try {
@@ -57,12 +58,15 @@ const Quiz = () => {
                     setSeverity={setSeverity}
                 />
                 <GenerateButton
-                    handlePress={async () => {
+                    handlePress={() => {
+                        setPlanLoading(true);
                         const prompt = `Addiction name: ${addictionType} Triggers: - ${trigger1} - ${trigger2} - ${trigger3} Addiction Severity: ${Math.round(severity * 10) / 10} Warning Signs - `;
                         console.log(prompt);
-                        await generatePlan(prompt).then(console.log(plan));
+                        generatePlan(prompt).then(console.log(plan));
+                        //setPlanLoading(false);
                     }}
                 />
+                {planLoading ? <ActivityIndicator size="small" color="#0000ff" /> : console.log("Not loading")}
             </ScrollView>
             <BackButton handlePress={() => router.back()} />
             <MainFooter />
