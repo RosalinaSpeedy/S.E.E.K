@@ -3,10 +3,23 @@
 
 S.E.E.K stands for "Sober, Empowered, Enriched, Knowing" - and is an Android mobile application developed in React Native to help addicts through recovery.
 
+Langugaes used:
+* Python (For training and deploying the AI model)
+* JavaScript (For creating the application within React Native)
+* SQL (For creating the MySQL database)
+
 Architecture:
 ![image](https://github.com/user-attachments/assets/98b20f6a-948b-419c-b006-6b8ef733ebb6)
 
 S.E.E.K is designed around three main strcutres - the offline, personal components, the online forum and the generative AI: Junko - a tuned version of the open source Llama 2-7b model from Meta.
+
+**Frameworks:**
+* React Native with Expo (main application framework)
+* NodeJS with Express (to provide the API that communicates with the database)
+* Flask (to provide the API that communicates with the AI model)
+* Google Colab (to run the Flask API)
+* Heroku (to host the Express API)
+* JawsDB (to host the database)
 
 Junko is a tuned version of the Llama 2-7b model from Meta - designed to generate relapse prevention plans based on inputs of addiction type - triggers for the addiction and the severity of the addiction on a scale of 0 to 1. The inputs are taken in via a quiz and this input is passed to an API call hosted via a Python Flask application. The output is then reparsed into a comprehensive relapse prevention plan with warning signs and coping strategies that are tailored to your addiction experience to better aid you through recovery.
 
