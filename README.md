@@ -70,6 +70,24 @@ Express API: https://github.com/RosalinaSpeedy/S.E.E.KExpress
 
 Junko API: https://github.com/RosalinaSpeedy/junkoApi 
 
+**Credit for icons:**
+* https://icons8.com/icon/82K6mLdwv7Bj/exclamation-mark Exclamation Mark icon by Icons8
+* https://icons8.com/icon/4sb8MbMbBFch/calendar Calendar icon by Icons8
+* https://icons8.com/icon/657YH2VNSu3P/clock Clock icon by Icons8
+* https://icons8.com/icon/O5pMGHxit6CB/happy Smiley icon by Icons8
+* https://icons8.com/icon/61605/neutral Neutral icon by Icons8
+* https://icons8.com/icon/7850/sad Sad icon by Icons8
+* https://icons8.com/icon/86524/tick-box Tick box icon by Icons8
+* https://icons8.com/icon/8uwJXRY8yFNP/trophy Trophy icon by Icons8
+* https://icons8.com/icon/21622/menu-vertical Menu vertical icon by Icons8
+* https://icons8.com/icon/vEgBUfGlccmA/plant Plant icon by Icons8
+* https://icons8.com/icon/12226/high-priority Alert icon by Icons8
+* https://icons8.com/icon/lOHkgswdTHw2/award-ribbon Award ribbon icon by Icons8
+* https://icons8.com/icon/9sHKlgWtrQdr/speech-bubble Speech bubble icon by Icons8
+* https://icons8.com/icon/2854/cloud Cloud icon by Icons8
+* https://icons8.com/icon/86527/home Home icon by Icons8
+* [Link coming!] Open book icon by Icons8
+
 
 **Future work:**
 
