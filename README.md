@@ -8,6 +8,10 @@ Langugaes used:
 * JavaScript (For creating the application within React Native)
 * SQL (For creating the MySQL database)
 
+**DOWNLOAD THE APK:**
+
+https://drive.google.com/file/d/1g1MFie_-k7kmd7J8U3PID2ciHq25DEue/view?usp=drive_link 
+
 Architecture:
 ![image](https://github.com/user-attachments/assets/98b20f6a-948b-419c-b006-6b8ef733ebb6)
 
